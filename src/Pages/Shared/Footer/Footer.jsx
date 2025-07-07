@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin, FaHome } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedin, FaHome, FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const Footer = () => {
@@ -15,9 +15,8 @@ const Footer = () => {
           </div>
           <p>Your trusted platform for buying and selling real estate in Bangladesh.</p>
           <div className="flex gap-4 mt-4 text-xl">
-            <a href="#"><FaFacebookF className="hover:text-primary" /></a>
-            <a href="#"><FaTwitter className="hover:text-primary" /></a>
-            <a href="#"><FaInstagram className="hover:text-primary" /></a>
+            <a href="https://www.facebook.com/engrtuhin.roky" target="_blank"><FaFacebookF className="hover:text-primary" /></a>
+            <a href="https://github.com/tuhinalrakib" target='_blank'><FaGithub className="hover:text-primary" /></a>
             <a href="#"><FaLinkedin className="hover:text-primary" /></a>
           </div>
         </div>
@@ -48,8 +47,8 @@ const Footer = () => {
         <div>
           <h3 className="footer-title">Contact Us</h3>
           <p>Dhaka, Bangladesh</p>
-          <p>Email: support@realestatepro.com</p>
-          <p>Phone: +880-1234-567890</p>
+          <p>Email: eng.tuhin77@gmail.com</p>
+          <p>Phone: +880-1609-253955</p>
         </div>
       </div>
 
