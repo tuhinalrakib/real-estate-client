@@ -1,18 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import lottie2 from "../../assets/lottieRegister.json";
 import Lottie from 'lottie-react';
 import { Link } from 'react-router';
+import { Helmet } from 'react-helmet';
+import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [imageUrl, setImageUrl] = useState("")
+    const {registerUser, updateUserProfile} = useAuth()
 
-    const onSubmit = data => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        const { email, image, name, password } = data
+        const imageData = image[0]
+
+        // Image upload in Cloudinary
+        // const formData = new FormData();
+        // formData.append("file", imageData);
+        // formData.append("upload_preset", "my_unsigned_preset");
+        // const res = await axios.post("https://api.cloudinary.com/v1_1/dxkmkskvy/image/upload", formData)
+        // const resData = res.data 
+        // setImageUrl(resData.secure_url)
+
+        // Create Account
+        registerUser(email, password)
+        .then(res=>{
+            if(res?.user){
+                updateUserProfile(name, imageUrl)
+                .then(()=>{
+                    consol
+                })
+            }
+        })
+        .catch(e=>{
+            console.log(e)
+        })
     };
 
+    console.log(imageUrl)
+
     return (
-        <div className="flex flex-col lg:flex-row-reverse justify-between items-center gap-10 px-4 lg:px-16 my-10">
+        <div className="flex flex-col lg:flex-row-reverse justify-center items-center gap-10 px-4 lg:px-16 my-10">
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             {/* Lottie Animation */}
             <div className="w-full lg:w-1/2 flex justify-center">
                 <Lottie
@@ -28,15 +61,20 @@ const Register = () => {
                     <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">Create an Account</h1>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                        {/* File Upload */}
+                        {/* Image Upload */}
                         <div>
                             <label htmlFor="file-upload" className="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
                             <label
                                 htmlFor="file-upload"
                                 className="cursor-pointer inline-flex items-center px-4 py-2 border border-indigo-500 text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
                             >
-                                Upload File
-                                <input id="file-upload" type="file" className="sr-only" />
+                                Upload Picture
+                                <input
+                                    id="file-upload"
+                                    {...register("image")}
+                                    type="file"
+                                    className="input input-bordered w-full"
+                                />
                             </label>
                         </div>
 

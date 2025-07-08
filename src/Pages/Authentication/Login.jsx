@@ -4,6 +4,7 @@ import React from "react";
 import lottie from "../../assets/lottiLogin.json"
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
     const { register, handleSubmit } = useForm()
@@ -14,6 +15,9 @@ const Login = () => {
 
     return (
         <div className="flex flex-col lg:flex-row gap-5 justify-center items-center my-10">
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                 <h1 className="text-3xl text-center font-bold">Login now!</h1>
                 <div className="card-body">
