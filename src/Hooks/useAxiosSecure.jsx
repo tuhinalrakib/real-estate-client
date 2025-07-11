@@ -1,31 +1,41 @@
 import axios from 'axios';
 import React from 'react';
-import useAuth from './useAuth';
+// import useAuth from './useAuth';
+// import { useNavigate } from 'react-router';
 
 const axiosInstance = axios.create({
-    baseURL : import.meta.env.VITE_url,
+    baseURL: import.meta.env.VITE_url,
     // withCredentials : true
 })
 
 const useAxiosSecure = () => {
     // const { logoutUser } = useAuth()
-    
-    // intercept response
-//     axiosInstance.interceptors.response.use(response=>{
-//         return response
-//     },error=>{
-//         if(error.status === 401 || error.status === 403){
-//             logoutUser()
-//             .then(()=>{
-//                 console.log("Logged out due to unauthorized access")
-//             })
-//             .catch(e=>{
-//                 console.log("Logout error:",e)
-//             })
+    // const navigate = useNavigate()
+
+    // axiosInstance.interceptors.request.use(config => {
+    //     config.headers.Authorization = `Bearer ${user.accessToken}`
+    //     return config;
+    // }, error => {
+    //     return Promise.reject(error);
+    // })
+
+//     axiosInstance.interceptors.response.use(res => {
+//         return res;
+//     }, error => {
+//         const status = error.status;
+//         if (status === 403) {
+//             navigate('/forbidden');
 //         }
-//         return Promise.reject(error)
-//     }
-// )
+//         else if (status === 401) {
+//             logoutUser()
+//                 .then(() => {
+//                     navigate('/login')
+//                 })
+//                 .catch(() => { })
+//         }
+
+//         return Promise.reject(error);
+//     })
 
     return axiosInstance
 };

@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useState } from "react";
 
 import lottie from "../../assets/lottiLogin.json"
 import { useForm } from "react-hook-form";
@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 
 const Login = () => {
     const { register, handleSubmit } = useForm()
+    const [showPassword, setShowPassword] = useState(false)
 
     const onSubmit = data => {
         console.log(data)
@@ -31,12 +32,32 @@ const Login = () => {
                                 placeholder="Email"
                             />
                             <label className="label">Password</label>
-                            <input
-                                type="password"
-                                {...register("password")}
-                                className="input"
-                                placeholder="Password"
-                            />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    {...register("password",
+                                        {
+                                            required: "Password is Required",
+                                            minLength: {
+                                                value: 6,
+                                                message: "Password must be at least 6 characters"
+                                            },
+                                            validate: {
+                                                hasUpperCase: (value) =>
+                                                    /[A-Z]/.test(value) || "Password must contain at least one uppercase letter",
+                                                hasSpecialChar: (value) =>
+                                                    /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character"
+                                            }
+                                        })}
+                                    placeholder="Password"
+                                    className="input input-bordered w-full"
+                                />
+                                <button onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
+                                    {
+                                        showPassword ? <FaEye size={24} /> : <FaEyeSlash size={24} />
+                                    }
+                                </button>
+                            </div>
                             <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>

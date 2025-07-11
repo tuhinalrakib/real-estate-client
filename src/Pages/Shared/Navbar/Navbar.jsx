@@ -13,7 +13,7 @@ const Navbar = () => {
     }
   };
 
-  const links = 
+  const links =
     <>
       <li><NavLink to="/" className="rounded-lg" >Home</NavLink></li>
       {user && <li><NavLink to="/all-properties" className="rounded-lg">All Properties</NavLink></li>}
@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="navbar max-w-7xl mx-auto">
         <div className="navbar-start">
           <Link to="/" className="btn btn-ghost normal-case text-xl flex items-center gap-2">
-            <FaHome size={26} color='#2ae1ce'/>
+            <FaHome size={26} color='#2ae1ce' />
             <span>RealEstatePro</span>
           </Link>
         </div>
@@ -47,9 +47,9 @@ const Navbar = () => {
                 </label>
                 <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                   <li><span>{user.displayName}</span></li>
-                  <li><button onClick={handleLogout}>Logout</button></li>
                 </ul>
               </div>
+              <button onClick={handleLogout} className='btn btn-accent btn-sm'>Logout</button>
             </>
           ) : (
             <Link to="/login" className="btn btn-outline btn-sm">Login</Link>

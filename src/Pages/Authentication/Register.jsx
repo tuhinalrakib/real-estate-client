@@ -2,41 +2,59 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import lottie2 from "../../assets/lottieRegister.json";
 import Lottie from 'lottie-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Helmet } from 'react-helmet';
 import useAuth from '../../Hooks/useAuth';
 import axios from 'axios';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import useAxios from '../../Hooks/useAxios';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [imageUrl, setImageUrl] = useState("")
-    const {registerUser, updateUserProfile} = useAuth()
+    const [showPassword, setShowPassword] = useState(false)
+    const { registerUser, updateUserProfile } = useAuth()
+    const axiosInstance = useAxios()
+    const navigate = useNavigate()
+
+    const handleImageUpload = async (e) => {
+        const image = e.target.files[0]
+        // Image upload in Cloudinary
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", "my_unsigned_preset");
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dxkmkskvy/image/upload", formData)
+        const resData = res.data
+        setImageUrl(resData.secure_url)
+    }
 
     const onSubmit = async (data) => {
-        const { email, image, name, password } = data
-        const imageData = image[0]
-
-        // Image upload in Cloudinary
-        // const formData = new FormData();
-        // formData.append("file", imageData);
-        // formData.append("upload_preset", "my_unsigned_preset");
-        // const res = await axios.post("https://api.cloudinary.com/v1_1/dxkmkskvy/image/upload", formData)
-        // const resData = res.data 
-        // setImageUrl(resData.secure_url)
+        const { email, name, password } = data
 
         // Create Account
         registerUser(email, password)
-        .then(res=>{
-            if(res?.user){
-                updateUserProfile(name, imageUrl)
-                .then(()=>{
-                    consol
-                })
-            }
-        })
-        .catch(e=>{
-            console.log(e)
-        })
+            .then(async(res) => {
+                // update userinfo in the database
+                const userInfo = {
+                    email: data.email,
+                    role: 'user', // default role
+                    created_at: new Date().toISOString(),
+                    last_log_in: new Date().toISOString()
+                }
+                const userRes = await axiosInstance.post('/users', userInfo);
+                console.log(userRes.data);
+
+                if (res?.user) {
+                    updateUserProfile(name, imageUrl)
+                    .then(() => {
+                        console.log("Updated")
+                        navigate("/")
+                    })
+                }
+            })
+            .catch(e => {
+                console.log(e)
+            })
     };
 
     console.log(imageUrl)
@@ -68,10 +86,8 @@ const Register = () => {
                                 htmlFor="file-upload"
                                 className="cursor-pointer inline-flex items-center px-4 py-2 border border-indigo-500 text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
                             >
-                                Upload Picture
                                 <input
-                                    id="file-upload"
-                                    {...register("image")}
+                                    onChange={handleImageUpload}
                                     type="file"
                                     className="input input-bordered w-full"
                                 />
@@ -105,14 +121,36 @@ const Register = () => {
                         {/* Password */}
                         <div>
                             <label className="label">Password</label>
-                            <input
-                                type="password"
-                                {...register("password", { required: true })}
-                                placeholder="Password"
-                                className="input input-bordered w-full"
-                            />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    {...register("password",
+                                        {
+                                            required: "Password is Required",
+                                            minLength: {
+                                                value: 6,
+                                                message: "Password must be at least 6 characters"
+                                            },
+                                            validate: {
+                                                hasUpperCase: (value) =>
+                                                    /[A-Z]/.test(value) || "Password must contain at least one uppercase letter",
+                                                hasSpecialChar: (value) =>
+                                                    /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character"
+                                            }
+                                        })}
+                                    placeholder="Password"
+                                    className="input input-bordered w-full"
+                                />
+                                <button onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
+                                    {
+                                        showPassword ? <FaEye size={24} /> : <FaEyeSlash size={24} />
+                                    }
+                                </button>
+                            </div>
                         </div>
-
+                        {
+                            errors.password && <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
+                        }
                         <div className="text-right">
                             <a href="#" className="text-sm text-indigo-500 hover:underline">Forgot password?</a>
                         </div>
