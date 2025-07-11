@@ -5,6 +5,8 @@ import Home from '../Pages/Home/Home';
 import AuthLayouts from '../Layouts/AuthLayouts';
 import Login from '../Pages/Authentication/Login';
 import Register from '../Pages/Authentication/Register';
+import PrivateRoute from '../routes/PrivateRoute';
+import DashboardLayouts from '../Layouts/DashboardLayouts';
 
 const Router = createBrowserRouter([
     {
@@ -30,6 +32,12 @@ const Router = createBrowserRouter([
                 Component : Register
             }
         ]
+    }
+    ,{
+        path : "dashboard",
+        element : <PrivateRoute>
+            <DashboardLayouts></DashboardLayouts>
+        </PrivateRoute>
     }
 ])
 

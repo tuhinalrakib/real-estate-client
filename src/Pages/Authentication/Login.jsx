@@ -3,15 +3,37 @@ import React, { useState } from "react";
 
 import lottie from "../../assets/lottiLogin.json"
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import GoogleLogin from "./GoogleLogin";
 
 const Login = () => {
     const { register, handleSubmit } = useForm()
     const [showPassword, setShowPassword] = useState(false)
+    const { loginUser } = useAuth()
+    const navigate = useNavigate()
 
     const onSubmit = data => {
-        console.log(data)
+        const { email, password } = data
+        loginUser(email, password)
+            .then(res => {
+                if (res.user) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Login Sucessfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate("/")
+                }
+            })
+            .catch(e => {
+                console.log(e.message)
+            })
     }
 
     return (
@@ -63,6 +85,7 @@ const Login = () => {
                         </fieldset>
                         <p><small>Don't have an account?</small><Link className='-ml-3 btn btn-accent btn-link' to="/register">Register</Link></p>
                     </form>
+                    <GoogleLogin></GoogleLogin>
                 </div>
             </div>
             <div>
