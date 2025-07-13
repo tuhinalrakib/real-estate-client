@@ -14,7 +14,7 @@ const GoogleLogin = () => {
         googleLogin()
             .then(async (res) => {
                 const user = res.user
-                const email = user.email
+                const email = user?.email
 
                 // update userinfo in the database
                 const userInfo = {

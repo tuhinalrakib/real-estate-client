@@ -5,7 +5,7 @@ import React from 'react';
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_url,
-    // withCredentials : true
+    withCredentials : true
 })
 
 const useAxiosSecure = () => {

@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import GoogleLogin from "./GoogleLogin";
 
 const Login = () => {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const [showPassword, setShowPassword] = useState(false)
     const { loginUser } = useAuth()
     const navigate = useNavigate()
@@ -49,7 +49,9 @@ const Login = () => {
                             <label className="label">Email</label>
                             <input
                                 type="email"
-                                {...register("email")}
+                                {...register("email",{
+                                    required : "Email is Required"
+                                })}
                                 className="input"
                                 placeholder="Email"
                             />
@@ -80,6 +82,9 @@ const Login = () => {
                                     }
                                 </button>
                             </div>
+                            {
+                                errors.password && <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
+                            }
                             <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
