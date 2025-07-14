@@ -9,7 +9,7 @@ const AllProperties = () => {
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["verified-properties"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/properties/verified");
+      const res = await axiosSecure.get("/agents/verified");
       return res.data;
     },
   });

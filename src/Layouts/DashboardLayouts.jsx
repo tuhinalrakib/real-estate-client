@@ -71,7 +71,7 @@ const DashboardLayout = () => {
               <>
                 <li><NavLink to="/dashboard/admin/profile" className={({ isActive }) => isActive ? activeClass : ""}>Admin Profile</NavLink></li>
                 <li><NavLink to="/dashboard/admin/makeAdmin" className={({ isActive }) => isActive ? activeClass : ""}>Manage Users</NavLink></li>
-                <li><NavLink to="/dashboard/manage-properties" className={({ isActive }) => isActive ? activeClass : ""}>Manage Properties</NavLink></li>
+                <li><NavLink to="/dashboard/admin/managementProperties" className={({ isActive }) => isActive ? activeClass : ""}>Manage Properties</NavLink></li>
                 <li><NavLink to="/dashboard/manage-reviews" className={({ isActive }) => isActive ? activeClass : ""}>Manage Reviews</NavLink></li>
               </>
             )}
