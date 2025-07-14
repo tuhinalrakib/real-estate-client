@@ -1,8 +1,16 @@
 import React from 'react';
 import { FaFacebookF, FaLinkedin, FaHome, FaGithub } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import useAuth from '../../../Hooks/useAuth';
 
 const Footer = () => {
+  const {user} = useAuth()
+  const links =
+    <>
+      <li><NavLink to="/" className="link link-hover" >Home</NavLink></li>
+      {user && <li><NavLink to="/allProperties" className="link link-hover">All Properties</NavLink></li>}
+      {user && <li><NavLink to="/dashboard" className="link link-hover">Dashboard</NavLink></li>}
+    </>
   return (
     <footer className="bg-cyan-400 text-base-accent pt-10">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -25,10 +33,7 @@ const Footer = () => {
         <div>
           <h3 className="footer-title">Quick Links</h3>
           <ul className="space-y-2">
-            <li><Link to="/" className="link link-hover">Home</Link></li>
-            <li><Link to="/all-properties" className="link link-hover">All Properties</Link></li>
-            <li><Link to="/dashboard" className="link link-hover">Dashboard</Link></li>
-            <li><Link to="/login" className="link link-hover">Login</Link></li>
+            {links}
           </ul>
         </div>
 

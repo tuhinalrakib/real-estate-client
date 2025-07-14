@@ -37,6 +37,7 @@ const Register = () => {
                 // update userinfo in the database
                 const userInfo = {
                     email: data.email,
+                    name : data.name,
                     role: 'user', // default role
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString()
@@ -141,7 +142,9 @@ const Register = () => {
                                     placeholder="Password"
                                     className="input input-bordered w-full"
                                 />
-                                <button onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
+                                <button 
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
                                     {
                                         showPassword ? <FaEye size={24} /> : <FaEyeSlash size={24} />
                                     }

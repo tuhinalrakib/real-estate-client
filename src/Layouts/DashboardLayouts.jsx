@@ -4,10 +4,9 @@ import useUserRole from '../Hooks/useUserRole';
 import { NavLink, Outlet } from 'react-router';
 
 const DashboardLayout = () => {
-  const { user } = useAuth(); // contains email, displayName, photoURL
-  console.log(user)
+  const { user } = useAuth(); 
   const role = useUserRole(); // assume it returns 'user', 'agent', or 'admin'
-
+  
   const activeClass = "bg-base-200 font-semibold rounded-md";
 
   return (
@@ -49,7 +48,7 @@ const DashboardLayout = () => {
             {/* User Routes */}
             {role === "user" && (
               <>
-                <li><NavLink to="/dashboard/profile" className={({ isActive }) => isActive ? activeClass : ""}>My Profile</NavLink></li>
+                <li><NavLink to="/dashboard/user/profile" className={({ isActive }) => isActive ? activeClass : ""}>My Profile</NavLink></li>
                 <li><NavLink to="/dashboard/wishlist" className={({ isActive }) => isActive ? activeClass : ""}>Wishlist</NavLink></li>
                 <li><NavLink to="/dashboard/bought" className={({ isActive }) => isActive ? activeClass : ""}>Property Bought</NavLink></li>
                 <li><NavLink to="/dashboard/reviews" className={({ isActive }) => isActive ? activeClass : ""}>My Reviews</NavLink></li>
@@ -59,9 +58,9 @@ const DashboardLayout = () => {
             {/* Agent Routes */}
             {role === "agent" && (
               <>
-                <li><NavLink to="/dashboard/profile" className={({ isActive }) => isActive ? activeClass : ""}>Agent Profile</NavLink></li>
-                <li><NavLink to="/dashboard/add-property" className={({ isActive }) => isActive ? activeClass : ""}>Add Property</NavLink></li>
-                <li><NavLink to="/dashboard/my-properties" className={({ isActive }) => isActive ? activeClass : ""}>My Properties</NavLink></li>
+                <li><NavLink to="/dashboard/agent/profile" className={({ isActive }) => isActive ? activeClass : ""}>Agent Profile</NavLink></li>
+                <li><NavLink to="/dashboard/agent/addProperty" className={({ isActive }) => isActive ? activeClass : ""}>Add Property</NavLink></li>
+                <li><NavLink to="/dashboard/agent/myProperties" className={({ isActive }) => isActive ? activeClass : ""}>My Properties</NavLink></li>
                 <li><NavLink to="/dashboard/sold-properties" className={({ isActive }) => isActive ? activeClass : ""}>Sold Properties</NavLink></li>
                 <li><NavLink to="/dashboard/requests" className={({ isActive }) => isActive ? activeClass : ""}>Requested Offers</NavLink></li>
               </>
@@ -70,8 +69,8 @@ const DashboardLayout = () => {
             {/* Admin Routes */}
             {role === "admin" && (
               <>
-                <li><NavLink to="/dashboard/profile" className={({ isActive }) => isActive ? activeClass : ""}>Admin Profile</NavLink></li>
-                <li><NavLink to="/dashboard/manage-users" className={({ isActive }) => isActive ? activeClass : ""}>Manage Users</NavLink></li>
+                <li><NavLink to="/dashboard/admin/profile" className={({ isActive }) => isActive ? activeClass : ""}>Admin Profile</NavLink></li>
+                <li><NavLink to="/dashboard/admin/makeAdmin" className={({ isActive }) => isActive ? activeClass : ""}>Manage Users</NavLink></li>
                 <li><NavLink to="/dashboard/manage-properties" className={({ isActive }) => isActive ? activeClass : ""}>Manage Properties</NavLink></li>
                 <li><NavLink to="/dashboard/manage-reviews" className={({ isActive }) => isActive ? activeClass : ""}>Manage Reviews</NavLink></li>
               </>

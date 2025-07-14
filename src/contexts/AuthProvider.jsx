@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
 import useAxios from '../Hooks/useAxios';
 
@@ -10,7 +10,6 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const axiosInstance = useAxios()
-    const email = user?.email
 
     const loginUser = async(email, password) => {
         setLoading(true)
@@ -26,18 +25,24 @@ const AuthProvider = ({ children }) => {
 
     const googleLogin = async() => {
         setLoading(true)
-        const user = await signInWithPopup(auth, googleProvider)
-        await axiosInstance.post('/jwt',{email})
-        return user
+        const result = await signInWithPopup(auth, googleProvider)
+        const loggedInEmail = result.user.email
+        await axiosInstance.post('/jwt',{email : loggedInEmail})
+        return result
+    }
+
+    const firebaseEmailVerify = async(email)=>{
+        const verify = await fetchSignInMethodsForEmail(auth, email)
+        return verify
     }
 
     const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, { displayName: name, photoURL: photo })
     }
 
-    const logOut = async () => {
+    const logOut = () => {
         // 🧹 cookie clear করার backend call
-        await axiosInstance.post(`${import.meta.env.VITE_url}/jwt/logout`, {});
+        axiosInstance.post(`${import.meta.env.VITE_url}/jwt/logout`, {});
         return signOut(auth)
     }
 
@@ -60,7 +65,8 @@ const AuthProvider = ({ children }) => {
         registerUser,
         loading,
         logOut,
-        googleLogin
+        googleLogin,
+        firebaseEmailVerify
     }
 
     return <AuthContext value={authData}>

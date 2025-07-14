@@ -7,6 +7,13 @@ import Login from '../Pages/Authentication/Login';
 import Register from '../Pages/Authentication/Register';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashboardLayouts from '../Layouts/DashboardLayouts';
+import Profile from '../Pages/Dashboard/User/Profile';
+import ManageUsers from '../Pages/Dashboard/Admin/ManageUsers';
+import AdminProfile from '../Pages/Dashboard/Admin/AdminProfile';
+import AgentProfile from '../Pages/Dashboard/Agent/AgentProfile';
+import AddProperty from '../Pages/Dashboard/Agent/AddProperty';
+import MyProperties from '../Pages/Dashboard/Agent/MyProperties';
+import AllProperties from '../Pages/Properties/AllProperties';
 
 const Router = createBrowserRouter([
     {
@@ -16,6 +23,12 @@ const Router = createBrowserRouter([
             {
                 index : true,
                 Component : Home
+            },
+            {
+                path : "allProperties",
+                element : <PrivateRoute>
+                    <AllProperties></AllProperties>
+                </PrivateRoute>
             }
         ]
     },
@@ -37,7 +50,33 @@ const Router = createBrowserRouter([
         path : "dashboard",
         element : <PrivateRoute>
             <DashboardLayouts></DashboardLayouts>
-        </PrivateRoute>
+        </PrivateRoute>,
+        children : [
+            {
+                path : "user/profile",
+                Component : Profile
+            },
+            {
+                path : "admin/makeAdmin",
+                Component : ManageUsers
+            },
+            {
+                path : "admin/profile",
+                Component : AdminProfile
+            },
+            {
+                path : "agent/profile",
+                Component : AgentProfile
+            },
+            {
+                path : "agent/addProperty",
+                Component : AddProperty
+            },
+            {
+                path : "agent/myProperties",
+                Component : MyProperties
+            }
+        ]
     }
 ])
 

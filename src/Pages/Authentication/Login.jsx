@@ -9,6 +9,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import GoogleLogin from "./GoogleLogin";
+// import { toast } from "react-toastify";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -16,25 +17,42 @@ const Login = () => {
     const { loginUser } = useAuth()
     const navigate = useNavigate()
 
-    const onSubmit = data => {
-        const { email, password } = data
+
+    const onSubmit = async (data) => {
+        const { email, password } = data;
         loginUser(email, password)
             .then(res => {
                 if (res.user) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Login Sucessfully",
+                        title: "Login Successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate("/")
+                    navigate("/");
                 }
             })
             .catch(e => {
-                console.log(e.message)
-            })
-    }
+                console.log(e.code);
+
+                let errorMessage = "Login failed";
+                // Firebase: Error (auth/invalid-credential).
+
+                if (e.code === 'auth/invalid-credential') {
+                    errorMessage = "Email/Password doesn't Match"
+                }
+
+                // toast(errorMessage)
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: errorMessage,
+                });
+            });
+    };
+
 
     return (
         <div className="flex flex-col lg:flex-row gap-5 justify-center items-center my-10">
@@ -49,12 +67,15 @@ const Login = () => {
                             <label className="label">Email</label>
                             <input
                                 type="email"
-                                {...register("email",{
-                                    required : "Email is Required"
+                                {...register("email", {
+                                    required: "Email is Required"
                                 })}
                                 className="input"
                                 placeholder="Email"
                             />
+                            {
+                                errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                            }
                             <label className="label">Password</label>
                             <div className="relative">
                                 <input
@@ -76,7 +97,9 @@ const Login = () => {
                                     placeholder="Password"
                                     className="input input-bordered w-full"
                                 />
-                                <button onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
+                                <button 
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
                                     {
                                         showPassword ? <FaEye size={24} /> : <FaEyeSlash size={24} />
                                     }
