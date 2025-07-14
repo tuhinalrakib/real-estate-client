@@ -1,7 +1,7 @@
 import React from 'react';
-import useAuth from '../Hooks/useAuth';// returns 'user', 'agent', or 'admin'
 import useUserRole from '../Hooks/useUserRole';
 import { NavLink, Outlet } from 'react-router';
+import useAuth from '../hooks/useAuth';
 
 const DashboardLayout = () => {
   const { user } = useAuth(); 
@@ -72,7 +72,7 @@ const DashboardLayout = () => {
                 <li><NavLink to="/dashboard/admin/profile" className={({ isActive }) => isActive ? activeClass : ""}>Admin Profile</NavLink></li>
                 <li><NavLink to="/dashboard/admin/makeAdmin" className={({ isActive }) => isActive ? activeClass : ""}>Manage Users</NavLink></li>
                 <li><NavLink to="/dashboard/admin/managementProperties" className={({ isActive }) => isActive ? activeClass : ""}>Manage Properties</NavLink></li>
-                <li><NavLink to="/dashboard/manage-reviews" className={({ isActive }) => isActive ? activeClass : ""}>Manage Reviews</NavLink></li>
+                <li><NavLink to="/dashboard/admin/manageReviews" className={({ isActive }) => isActive ? activeClass : ""}>Manage Reviews</NavLink></li>
               </>
             )}
 

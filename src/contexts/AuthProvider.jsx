@@ -18,9 +18,11 @@ const AuthProvider = ({ children }) => {
         return user
     }
 
-    const registerUser = (email, password) => {
+    const registerUser = async(email, password) => {
         setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
+        const user = await createUserWithEmailAndPassword(auth, email, password)
+        await axiosInstance.post('/jwt',{email})
+        return user
     }
 
     const googleLogin = async() => {

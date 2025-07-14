@@ -16,6 +16,7 @@ import MyProperties from '../Pages/Dashboard/Agent/MyProperties';
 import AllProperties from '../Pages/Properties/AllProperties';
 import ManageProperties from '../Pages/Dashboard/Admin/ManageProperties';
 import PropertyDetails from '../Pages/Properties/PropertyDetails';
+import ManageReviews from '../Pages/Dashboard/Admin/ManageReviews';
 
 const Router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ const Router = createBrowserRouter([
             {
                 path : "admin/managementProperties",
                 Component : ManageProperties
+            },
+            {
+                path : "admin/manageReviews",
+                Component : ManageReviews
             },
             {
                 path : "agent/profile",
