@@ -17,6 +17,7 @@ import AllProperties from '../Pages/Properties/AllProperties';
 import ManageProperties from '../Pages/Dashboard/Admin/ManageProperties';
 import PropertyDetails from '../Pages/Properties/PropertyDetails';
 import ManageReviews from '../Pages/Dashboard/Admin/ManageReviews';
+import Wishlist from '../Pages/Dashboard/User/Wishlist';
 
 const Router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const Router = createBrowserRouter([
             {
                 path : "user/profile",
                 Component : Profile
+            },
+            {
+                path : "Wishlist",
+                Component : Wishlist
             },
             {
                 path : "admin/makeAdmin",
