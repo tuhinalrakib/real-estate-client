@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from './Banner';
 import BenefitsSection from './BenefitsSection';
+import FeaturedProperties from './FeaturedProperties';
 
 const Home = () => {
     return (
@@ -10,9 +11,15 @@ const Home = () => {
                 <Banner></Banner>
             </section>
 
-            {/* Advertisement Properties */}
+            {/* Featured Properties */}
             <section className="my-10 px-4 md:px-8">
                 <h2 className="text-3xl font-bold text-center mb-6">Featured Properties</h2>
+                
+            </section>
+
+            {/* Advertisement Properties */}
+            <section className="my-10 px-4 md:px-8">
+                <h2 className="text-3xl font-bold text-center mb-6">Advertisement Properties</h2>
                 {/* TODO: It will get from Backend*/}
             </section>
 
