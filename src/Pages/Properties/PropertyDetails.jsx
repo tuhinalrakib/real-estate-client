@@ -20,6 +20,7 @@ const PropertyDetails = () => {
       return res.data;
     },
   });
+  console.log(property)
 
   const { data: reviews = [] } = useQuery({
     queryKey: ["reviews", id],
@@ -57,6 +58,7 @@ const PropertyDetails = () => {
         priceMin: property.priceMin,
         priceMax: property.priceMax,
         agentName: property.agentName,
+        agentEmail : property.agentEmail,
         agentImage: property.agentImage,
         image: property.image,
         verificationStatus: property.status,

@@ -2,6 +2,7 @@ import React from 'react';
 import useUserRole from '../Hooks/useUserRole';
 import { NavLink, Outlet } from 'react-router';
 import useAuth from '../hooks/useAuth';
+import { Helmet } from 'react-helmet';
 
 const DashboardLayout = () => {
   const { user } = useAuth(); 
@@ -11,6 +12,9 @@ const DashboardLayout = () => {
 
   return (
     <div className="drawer lg:drawer-open min-h-screen">
+      <Helmet>
+          <title>Dashboard</title>
+      </Helmet>
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
       
       <div className="drawer-content flex flex-col">

@@ -19,6 +19,7 @@ import PropertyDetails from '../Pages/Properties/PropertyDetails';
 import ManageReviews from '../Pages/Dashboard/Admin/ManageReviews';
 import Wishlist from '../Pages/Dashboard/User/Wishlist';
 import NotFound from '../Pages/NotFound';
+import Offers from '../Pages/Dashboard/Agent/Offers';
 
 const Router = createBrowserRouter([
     {
@@ -98,6 +99,10 @@ const Router = createBrowserRouter([
             {
                 path : "agent/myProperties",
                 Component : MyProperties
+            },
+            {
+                path : "requests",
+                Component : Offers
             }
         ]
     },

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import useUserRole from "../../../Hooks/useUserRole";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const Wishlist = () => {
     const { user } = useAuth();
@@ -49,6 +50,7 @@ const Wishlist = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries(["wishlist"]);
+            queryClient.invalidateQueries(["offers"])
             Swal.fire("Offer submitted!", "Check your Property Bought section.", "success");
             setShowModal(false);
         },
@@ -62,7 +64,7 @@ const Wishlist = () => {
     } = useForm();
 
     const hasOffered = (propertyId) => {
-        return offers.some((offer) => offer.propertyId === propertyId);
+        return offers.find(offer=>offer.propertyId === propertyId)
     };
 
     const handleMakeOffer = (property) => {
@@ -92,6 +94,7 @@ const Wishlist = () => {
             title: selectedProperty.title,
             location: selectedProperty.location,
             agentName: selectedProperty.agentName,
+            agentEmail : selectedProperty.agentEmail,
             buyerEmail: user.email,
             buyerName: user.displayName,
             offerAmount: price,
@@ -114,6 +117,9 @@ const Wishlist = () => {
         <div data-aos="flip-left"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="1500">
+            <Helmet>
+                <title>Wishlist</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-6">My Wishlist</h2>
 
             {wishlist.length === 0 ? (
@@ -122,6 +128,7 @@ const Wishlist = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {wishlist.map((item) => (
                         <div key={item._id} className="card bg-base-100 shadow-md">
+                            {console.log(item)}
                             <figure>
                                 <img src={item.image} alt={item.title} className="w-full h-60 object-cover" />
                             </figure>
@@ -133,6 +140,9 @@ const Wishlist = () => {
                                     <span className="capitalize ml-1 text-blue-600">{item.verificationStatus}</span>
                                 </p>
                                 <div className="flex items-center gap-2 mt-2">
+                                    {
+                                        console.log(item)
+                                    }
                                     <img
                                         src={item.agentImage}
                                         alt={item.agentName}
@@ -141,7 +151,7 @@ const Wishlist = () => {
                                     <p className="text-sm">{item.agentName}</p>
                                 </div>
                                 <div className="card-actions justify-end mt-4">
-                                    {hasOffered(item.propertyId) ? (
+                                    {hasOffered(item.propertyId) || offersFound? (
                                         <button className="btn btn-sm btn-outline" disabled>
                                             Already Offered
                                         </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import useUserRole from '../../../Hooks/useUserRole';
+import { Helmet } from 'react-helmet';
 
 const AgentProfile = () => {
     const { user } = useAuth();
@@ -8,6 +9,9 @@ const AgentProfile = () => {
 
     return (
         <div className="bg-lime-400 max-w-xl mx-auto mt-5 dark:bg-base-200 shadow-md rounded-xl p-6">
+            <Helmet>
+                <title>Profile</title>
+            </Helmet>
             <div className="flex flex-col justify-center items-center text-center">
                 <img
                     className="w-24 h-24 rounded-full border-2 border-primary"

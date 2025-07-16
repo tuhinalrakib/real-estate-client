@@ -4,13 +4,16 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import axios from "axios";
+import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router";
 
 const AddProperty = () => {
     const { user } = useAuth(); // From your context provider
     const axiosSecure = useAxiosSecure();
     const [propertyImage, setPropertyImage] = useState("")
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
+    const navigate = useNavigate()
+    
     const onSubmit = async (data) => {
         try {
 
@@ -23,14 +26,20 @@ const AddProperty = () => {
                 priceMax: parseFloat(data.priceMax),
                 agentName: user.displayName,
                 agentEmail: user.email,
+                agentImage: user?.photoURL,
                 status: "pending", // default until admin verifies
                 createdAt: new Date(),
             };
 
             // Submit to backend
+            if (!propertyImage) {
+                Swal.fire("Please wait", "Image is still uploading. Try again in a moment.", "info");
+                return;
+            }
             const res = await axiosSecure.post("/agents/properties", property);
             if (res.data.insertedId) {
                 Swal.fire("Success!", "Property added successfully!", "success");
+                navigate("/dashboard")
                 reset();
             }
         } catch (error) {
@@ -49,10 +58,12 @@ const AddProperty = () => {
         const resData = res.data
         setPropertyImage(resData.secure_url)
     }
-    console.log(propertyImage)
 
     return (
         <div className="max-w-3xl mx-auto bg-white dark:bg-base-200 p-6 rounded shadow">
+            <Helmet>
+                <title>Add Property</title>
+            </Helmet>
             <h2 className="text-2xl font-bold mb-4">Add New Property</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

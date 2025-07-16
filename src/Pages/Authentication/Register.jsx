@@ -31,6 +31,10 @@ const Register = () => {
 
     const onSubmit = async (data) => {
         const { email, name, password } = data
+        if (!imageUrl) {
+            Swal.fire("Please wait", "Image is still uploading. Try again in a moment.", "info");
+            return;
+        }
 
         // Create Account
         registerUser(email, password)
