@@ -17,7 +17,11 @@ const AllProperties = () => {
   if (isLoading) return <p>Loading properties...</p>;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div
+      data-aos="flip-up"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="1500"
+      className="max-w-7xl mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold mb-6 text-center">All Verified Properties</h2>
 
       {properties.length === 0 ? (

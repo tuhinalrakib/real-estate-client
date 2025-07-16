@@ -18,6 +18,7 @@ import ManageProperties from '../Pages/Dashboard/Admin/ManageProperties';
 import PropertyDetails from '../Pages/Properties/PropertyDetails';
 import ManageReviews from '../Pages/Dashboard/Admin/ManageReviews';
 import Wishlist from '../Pages/Dashboard/User/Wishlist';
+import NotFound from '../Pages/NotFound';
 
 const Router = createBrowserRouter([
     {
@@ -99,6 +100,10 @@ const Router = createBrowserRouter([
                 Component : MyProperties
             }
         ]
+    },
+    {
+        path : "*",
+        Component : NotFound
     }
 ])
 

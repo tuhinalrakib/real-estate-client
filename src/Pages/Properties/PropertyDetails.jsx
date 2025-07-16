@@ -29,7 +29,23 @@ const PropertyDetails = () => {
     },
   });
 
-  console.log(reviews)
+  const { data: isWishlisted = false, isLoading: wishlistLoading } = useQuery({
+  queryKey: ["wishlist", user?.email, id],
+  enabled: !!user?.email && !!id,
+  queryFn: async () => {
+    const res = await axiosSecure.get(`/wishlist/check?userEmail=${user.email}&propertyId=${id}`);
+    return res.data.exists;
+  },
+});
+
+  const wishlistQuery = useQuery({
+    queryKey: ["wishlist", user?.email, id],
+    enabled: !!user?.email && !!id,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/wishlist/check?userEmail=${user.email}&propertyId=${id}`);
+      return res.data.exists;
+    },
+  });
 
   const wishlistMutation = useMutation({
     mutationFn: async () => {
@@ -48,6 +64,7 @@ const PropertyDetails = () => {
     },
     onSuccess: () => {
       Swal.fire("Success", "Added to wishlist", "success");
+      wishlistQuery.refetch(); // <-- Trigger refetch
     },
   });
 
@@ -104,12 +121,18 @@ const PropertyDetails = () => {
             <strong>Agent:</strong> {property.agentName}
           </p>
 
-          <button
-            onClick={() => wishlistMutation.mutate()}
-            className="btn btn-primary mt-4 w-fit"
-          >
-            Add to Wishlist
-          </button>
+          {wishlistLoading ? (
+            <button className="btn btn-primary mt-4 w-fit" disabled>Loading...</button>
+          ) : isWishlisted ? (
+            <button className="btn btn-success mt-4 w-fit" disabled>Wishlist Added</button>
+          ) : (
+            <button
+              onClick={() => wishlistMutation.mutate()}
+              className="btn btn-primary mt-4 w-fit"
+            >
+              Add to Wishlist
+            </button>
+          )}
         </div>
       </div>
 

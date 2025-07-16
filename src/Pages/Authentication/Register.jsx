@@ -8,6 +8,7 @@ import useAuth from '../../Hooks/useAuth';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import useAxios from '../../Hooks/useAxios';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,11 +34,11 @@ const Register = () => {
 
         // Create Account
         registerUser(email, password)
-            .then(async(res) => {
+            .then(async (res) => {
                 // update userinfo in the database
                 const userInfo = {
                     email: data.email,
-                    name : data.name,
+                    name: data.name,
                     role: 'user', // default role
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString()
@@ -47,10 +48,16 @@ const Register = () => {
 
                 if (res?.user) {
                     updateUserProfile(name, imageUrl)
-                    .then(() => {
-                        console.log("Updated")
-                        navigate("/")
-                    })
+                        .then(() => {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Account Create Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate("/")
+                        })
                 }
             })
             .catch(e => {
@@ -142,9 +149,9 @@ const Register = () => {
                                     placeholder="Password"
                                     className="input input-bordered w-full"
                                 />
-                                <button 
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
                                     {
                                         showPassword ? <FaEye size={24} /> : <FaEyeSlash size={24} />
                                     }
