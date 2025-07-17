@@ -21,7 +21,7 @@ const Offers = () => {
   // Mutation for accepting an offer
   const acceptMutation = useMutation({
     mutationFn: async (offer) => {
-      return axiosSecure.patch(`/agent/offers/accept/${offer._id}`, {
+      return axiosSecure.patch(`/agents/offers/accept/${offer._id}`, {
         propertyId: offer.propertyId,
       });
     },
@@ -34,7 +34,7 @@ const Offers = () => {
   // Mutation for rejecting an offer
   const rejectMutation = useMutation({
     mutationFn: async (id) => {
-      return axiosSecure.patch(`/agent/offers/reject/${id}`);
+      return axiosSecure.patch(`/agents/offers/reject/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["agentOffers"]);

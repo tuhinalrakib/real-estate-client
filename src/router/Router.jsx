@@ -20,6 +20,7 @@ import ManageReviews from '../Pages/Dashboard/Admin/ManageReviews';
 import Wishlist from '../Pages/Dashboard/User/Wishlist';
 import NotFound from '../Pages/NotFound';
 import Offers from '../Pages/Dashboard/Agent/Offers';
+import BoughtProperties from '../Pages/Dashboard/User/BoughtProperties';
 
 const Router = createBrowserRouter([
     {
@@ -69,8 +70,12 @@ const Router = createBrowserRouter([
                 Component : Profile
             },
             {
-                path : "Wishlist",
+                path : "user/wishlist",
                 Component : Wishlist
+            },
+            {
+                path : "user/bought",
+                Component : BoughtProperties
             },
             {
                 path : "admin/makeAdmin",

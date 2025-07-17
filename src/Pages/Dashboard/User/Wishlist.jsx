@@ -151,7 +151,7 @@ const Wishlist = () => {
                                     <p className="text-sm">{item.agentName}</p>
                                 </div>
                                 <div className="card-actions justify-end mt-4">
-                                    {hasOffered(item.propertyId) || offersFound? (
+                                    {hasOffered(item.propertyId) ? (
                                         <button className="btn btn-sm btn-outline" disabled>
                                             Already Offered
                                         </button>
