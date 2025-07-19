@@ -21,99 +21,104 @@ import Wishlist from '../Pages/Dashboard/User/Wishlist';
 import NotFound from '../Pages/NotFound';
 import Offers from '../Pages/Dashboard/Agent/Offers';
 import BoughtProperties from '../Pages/Dashboard/User/BoughtProperties';
+import Payment from '../Pages/Dashboard/User/Payment/Payment';
 
 const Router = createBrowserRouter([
     {
-        path : "/",
-        element : <MainLayouts></MainLayouts>,
-        children : [
+        path: "/",
+        element: <MainLayouts></MainLayouts>,
+        children: [
             {
-                index : true,
-                Component : Home
+                index: true,
+                Component: Home
             },
             {
-                path : "allProperties",
-                element : <PrivateRoute>
+                path: "allProperties",
+                element: <PrivateRoute>
                     <AllProperties></AllProperties>
                 </PrivateRoute>
             },
             {
-                path : "property/:id",
-                element : <PrivateRoute>
+                path: "property/:id",
+                element: <PrivateRoute>
                     <PropertyDetails></PropertyDetails>
                 </PrivateRoute>
             }
         ]
     },
     {
-        path : "/",
-        Component : AuthLayouts,
-        children : [
+        path: "/",
+        Component: AuthLayouts,
+        children: [
             {
-                path : "login",
-                Component : Login
+                path: "login",
+                Component: Login
             },
             {
-                path : "register",
-                Component : Register
+                path: "register",
+                Component: Register
             }
         ]
     }
-    ,{
-        path : "dashboard",
-        element : <PrivateRoute>
+    , {
+        path: "dashboard",
+        element: <PrivateRoute>
             <DashboardLayouts></DashboardLayouts>
         </PrivateRoute>,
-        children : [
+        children: [
             {
-                path : "user/profile",
-                Component : Profile
+                path: "user/profile",
+                Component: Profile
             },
             {
-                path : "user/wishlist",
-                Component : Wishlist
+                path: "user/wishlist",
+                Component: Wishlist
             },
             {
-                path : "user/bought",
-                Component : BoughtProperties
+                path: "user/bought",
+                Component: BoughtProperties
             },
             {
-                path : "admin/makeAdmin",
-                Component : ManageUsers
+                path: "user/payment/:id",
+                Component: Payment
             },
             {
-                path : "admin/profile",
-                Component : AdminProfile
+                path: "admin/makeAdmin",
+                Component: ManageUsers
             },
             {
-                path : "admin/managementProperties",
-                Component : ManageProperties
+                path: "admin/profile",
+                Component: AdminProfile
             },
             {
-                path : "admin/manageReviews",
-                Component : ManageReviews
+                path: "admin/managementProperties",
+                Component: ManageProperties
             },
             {
-                path : "agent/profile",
-                Component : AgentProfile
+                path: "admin/manageReviews",
+                Component: ManageReviews
             },
             {
-                path : "agent/addProperty",
-                Component : AddProperty
+                path: "agent/profile",
+                Component: AgentProfile
             },
             {
-                path : "agent/myProperties",
-                Component : MyProperties
+                path: "agent/addProperty",
+                Component: AddProperty
             },
             {
-                path : "requests",
-                Component : Offers
+                path: "agent/myProperties",
+                Component: MyProperties
+            },
+            {
+                path: "requests",
+                Component: Offers
             }
         ]
     },
     {
-        path : "*",
-        Component : NotFound
+        path: "*",
+        Component: NotFound
     }
 ])
 

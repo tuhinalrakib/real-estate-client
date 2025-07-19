@@ -4,13 +4,14 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
-import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../../../Hooks/useAuth";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../../Hooks/useAuth";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { useNavigate, useParams } from "react-router";
 
-const Payment = () => {
+const PaymentForm = () => {
   const { id } = useParams(); // offer id
+  console.log(id)
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
@@ -125,4 +126,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default PaymentForm;

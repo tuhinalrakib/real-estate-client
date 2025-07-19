@@ -3,9 +3,9 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useUserRole from "../../../Hooks/useUserRole";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Wishlist = () => {
     const { user } = useAuth();

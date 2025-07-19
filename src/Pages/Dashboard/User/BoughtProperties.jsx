@@ -54,7 +54,7 @@ const BoughtProperties = () => {
                     {item.status === "accepted" && !item.transactionId ? (
                       <button
                         onClick={() =>
-                          navigate(`/dashboard/payment/${item._id}`)
+                          navigate(`/dashboard/user/payment/${item._id}`)
                         }
                         className="btn btn-sm btn-primary"
                       >

@@ -3,8 +3,8 @@ import { useParams } from "react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -108,19 +108,19 @@ const PropertyDetails = () => {
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="card bg-base-100 shadow-xl">
         <figure>
-          <img src={property.image} alt={property.title} className="w-full h-72 object-cover" />
+          <img src={property?.image} alt={property?.title} className="w-full h-72 object-cover" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-2xl">{property.title}</h2>
-          <p className="text-gray-600">{property.description}</p>
+          <h2 className="card-title text-2xl">{property?.title}</h2>
+          <p className="text-gray-600">{property?.description}</p>
           <p className="text-sm mt-2">
-            <strong>Location:</strong> {property.location}
+            <strong>Location:</strong> {property?.location}
           </p>
           <p className="text-sm">
-            <strong>Price:</strong> ${property.priceMin} - ${property.priceMax}
+            <strong>Price:</strong> ${property?.priceMin} - ${property?.priceMax}
           </p>
           <p className="text-sm">
-            <strong>Agent:</strong> {property.agentName}
+            <strong>Agent:</strong> {property?.agentName}
           </p>
 
           {wishlistLoading ? (
