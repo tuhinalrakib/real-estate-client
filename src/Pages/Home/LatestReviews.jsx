@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
-import useAxios from '../../Hooks/useAxios';
+import React, { useEffect, useState } from 'react';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const LatestReviews = () => {
-    const axiosInstance = useAxios()
-    const [reviews, setReviews]
+    const axiosSecure = useAxiosSecure()
+    const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-      axiosInstance.get("/agents/verified?limit=4")
+      axiosSecure.get("/reviews/latestReviews?sort=latest&limit=3")
         .then(res => setReviews(res.data))
         .catch(err => console.error(err));
     }, []);
+    console.log(reviews)
     return (
         <div>
             <section className="py-10 bg-white">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-2xl font-semibold mb-6 text-center">Latest User Reviews</h2>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {/* {reviews.map((review) => (
+                        {reviews.map((review) => (
                             <div key={review._id} className="border rounded-lg p-4 shadow-sm">
                                 <div className="flex items-center gap-3 mb-2">
                                     <img src={review.reviewerImage} alt="Reviewer" className="w-10 h-10 rounded-full" />
@@ -27,7 +27,7 @@ const LatestReviews = () => {
                                 </div>
                                 <p className="text-sm text-gray-700">{review.description}</p>
                             </div>
-                        ))} */}
+                        ))}
                     </div>
                 </div>
             </section>
