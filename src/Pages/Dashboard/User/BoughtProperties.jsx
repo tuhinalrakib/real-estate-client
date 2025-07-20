@@ -8,11 +8,12 @@ const BoughtProperties = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  console.log(user)
 
   const { data: bought = [], isLoading } = useQuery({
     queryKey: ["bought", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/offers/bought?email=${user?.email}`);
+      const res = await axiosSecure.get(`/offers?email=${user?.email}`);
       return res.data;
     },
   });

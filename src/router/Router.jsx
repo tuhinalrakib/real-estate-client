@@ -22,6 +22,7 @@ import NotFound from '../Pages/NotFound';
 import Offers from '../Pages/Dashboard/Agent/Offers';
 import BoughtProperties from '../Pages/Dashboard/User/BoughtProperties';
 import Payment from '../Pages/Dashboard/User/Payment/Payment';
+import MyReviews from '../Pages/Dashboard/User/MyReviews';
 
 const Router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ const Router = createBrowserRouter([
             {
                 path: "user/payment/:id",
                 Component: Payment
+            },
+            {
+                path : "user/myReviews",
+                Component : MyReviews
             },
             {
                 path: "admin/makeAdmin",

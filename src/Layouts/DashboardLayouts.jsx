@@ -55,7 +55,7 @@ const DashboardLayout = () => {
                 <li><NavLink to="/dashboard/user/profile" className={({ isActive }) => isActive ? activeClass : ""}>My Profile</NavLink></li>
                 <li><NavLink to="/dashboard/user/wishlist" className={({ isActive }) => isActive ? activeClass : ""}>Wishlist</NavLink></li>
                 <li><NavLink to="/dashboard/user/bought" className={({ isActive }) => isActive ? activeClass : ""}>Property Bought</NavLink></li>
-                <li><NavLink to="/dashboard/reviews" className={({ isActive }) => isActive ? activeClass : ""}>My Reviews</NavLink></li>
+                <li><NavLink to="/dashboard/user/myReviews" className={({ isActive }) => isActive ? activeClass : ""}>My Reviews</NavLink></li>
               </>
             )}
 

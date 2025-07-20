@@ -9,9 +9,9 @@ import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useNavigate, useParams } from "react-router";
 
+
 const PaymentForm = () => {
   const { id } = useParams(); // offer id
-  console.log(id)
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
@@ -31,12 +31,14 @@ const PaymentForm = () => {
     if (offer?.offerAmount) {
       // Create payment intent
       axiosSecure
-        .post("/create-payment-intent", { price: offer.offerAmount })
+        .post("/offers/create-payment-intent", { price: offer.offerAmount })
         .then((res) => {
+          console.log(res.data)
           setClientSecret(res.data.clientSecret);
         });
     }
   }, [axiosSecure, offer]);
+  console.log(clientSecret)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -117,7 +119,7 @@ const PaymentForm = () => {
         <button
           className="btn btn-primary mt-6 w-full"
           type="submit"
-          disabled={!stripe || !clientSecret || processing}
+          disabled={!stripe || !clientSecret  || processing}
         >
           {processing ? "Processing..." : "Pay Now"}
         </button>

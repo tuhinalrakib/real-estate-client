@@ -17,6 +17,7 @@ const PropertyDetails = () => {
     queryKey: ["property", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/admin/properties/${id}`);
+      console.log(res.data)
       return res.data;
     },
   });

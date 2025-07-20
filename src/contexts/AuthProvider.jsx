@@ -11,29 +11,38 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const axiosInstance = useAxios()
 
-    const loginUser = async(email, password) => {
+    const loginUser = async (email, password) => {
         setLoading(true)
         const user = await signInWithEmailAndPassword(auth, email, password)
-        await axiosInstance.post('/jwt',{email})
+
+         // ✅ get token from backend and save to localStorage
+        const { data } = await axiosInstance.post('/jwt', { email });
+        localStorage.setItem('token', data.token);
         return user
     }
 
-    const registerUser = async(email, password) => {
+    const registerUser = async (email, password) => {
         setLoading(true)
         const user = await createUserWithEmailAndPassword(auth, email, password)
-        await axiosInstance.post('/jwt',{email})
+        
+        // ✅ get token from backend and save to localStorage
+        const { data } = await axiosInstance.post('/jwt', { email });
+        localStorage.setItem('token', data.token);
         return user
     }
 
-    const googleLogin = async() => {
+    const googleLogin = async () => {
         setLoading(true)
         const result = await signInWithPopup(auth, googleProvider)
-        const loggedInEmail = result.user.email
-        await axiosInstance.post('/jwt',{email : loggedInEmail})
+        const email = result.user.email
+
+        // ✅ get token from backend and save to localStorage
+        const { data } = await axiosInstance.post('/jwt', { email });
+        localStorage.setItem('token', data.token);
         return result
     }
 
-    const firebaseEmailVerify = async(email)=>{
+    const firebaseEmailVerify = async (email) => {
         const verify = await fetchSignInMethodsForEmail(auth, email)
         return verify
     }
@@ -43,8 +52,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const logOut = () => {
-        // 🧹 cookie clear করার backend call
-        axiosInstance.post(`${import.meta.env.VITE_url}/jwt/logout`, {});
+        localStorage.removeItem('token'); // 🧹 remove token from localStorage
         return signOut(auth)
     }
 

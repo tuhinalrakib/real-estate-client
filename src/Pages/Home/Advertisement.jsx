@@ -1,52 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import useAxios from "../../Hooks/useAxios";
 
-const FeaturedProperties = () => {
-  const featured = [
-    {
-      _id: "1",
-      title: "Modern Family House",
-      image: "https://i.ibb.co/X7ZzvcN/house1.jpg",
-      location: "Gulshan, Dhaka",
-      priceMin: 120000,
-      priceMax: 150000,
-      status: "verified",
-    },
-    {
-      _id: "2",
-      title: "Luxury Villa",
-      image: "https://i.ibb.co/7jG6Fs6/house2.jpg",
-      location: "Banani, Dhaka",
-      priceMin: 250000,
-      priceMax: 300000,
-      status: "verified",
-    },
-    {
-      _id: "3",
-      title: "Cozy Apartment",
-      image: "https://i.ibb.co/L5qKLbD/house3.jpg",
-      location: "Dhanmondi, Dhaka",
-      priceMin: 80000,
-      priceMax: 95000,
-      status: "verified",
-    },
-    {
-      _id: "4",
-      title: "Elegant Penthouse",
-      image: "https://i.ibb.co/dW7fKV6/house4.jpg",
-      location: "Baridhara, Dhaka",
-      priceMin: 320000,
-      priceMax: 360000,
-      status: "verified",
-    },
-  ];
+const Advertisement = () => {
+  const [properties,setProperties] = useState([])
+  const axiosInstance = useAxios()
+
+  useEffect(() => {
+  axiosInstance.get("/agents/verified?limit=4")
+    .then(res => setProperties(res.data))
+    .catch(err => console.error(err));
+}, []);
+
 
   return (
     <div className="my-10 px-4 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">Featured Properties</h2>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {featured.map((property) => (
+        {properties?.map((property) => (
           <div key={property._id} className="card bg-base-100 shadow-md">
             <figure>
               <img
@@ -80,4 +50,4 @@ const FeaturedProperties = () => {
   );
 };
 
-export default FeaturedProperties;
+export default Advertisement;

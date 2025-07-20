@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_url,
-    withCredentials : true
 })
 
 const useAxiosSecure = () => {
@@ -13,19 +12,18 @@ const useAxiosSecure = () => {
     const navigate = useNavigate()
 
     axiosInstance.interceptors.request.use(config => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
-    }, error => {
-        return Promise.reject(error);
-    })
+    });
 
     axiosInstance.interceptors.response.use(res => {
         return res;
     }, error => {
         const status = error.status;
-        if (status === 403) {
-            navigate('/forbidden');
-        }
-        else if (status === 401) {
+        if (status === 401 || status === 403) {
             logoutUser()
                 .then(() => {
                     navigate('/login')
