@@ -5,6 +5,7 @@ import FeaturedProperties from './Advertisement';
 import Advertisement from './Advertisement';
 import LatestReviews from './LatestReviews';
 import HowItWorks from './HowItWorks';
+import Stats from './Stats ';
 
 const Home = () => {
     return (
@@ -36,6 +37,11 @@ const Home = () => {
             <section className="my-10 px-4 md:px-8">
                 {/* TODO */}
                 <HowItWorks></HowItWorks>
+            </section>
+
+            <section className="my-10 px-4 md:px-8">
+                {/* TODO */}
+                <Stats></Stats>
             </section>
         </div>
     );
