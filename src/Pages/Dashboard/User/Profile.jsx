@@ -7,7 +7,7 @@ const Profile = () => {
   const role = useUserRole();
 
   return (
-    <div className="bg-[#5826bc] max-w-xl mx-auto mt-5 dark:bg-base-200 shadow-md rounded-xl p-6">
+    <div className="bg-[#5826bc] text-white max-w-xl mx-auto mt-5 dark:bg-base-200 shadow-md rounded-xl p-6">
       <div className="flex flex-col justify-center items-center text-center">
         <img
           className="w-24 h-24 rounded-full border-2 border-primary"
