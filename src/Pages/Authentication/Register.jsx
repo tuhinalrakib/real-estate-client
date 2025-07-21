@@ -48,9 +48,8 @@ const Register = () => {
                     last_log_in: new Date().toISOString()
                 }
                 const userRes = await axiosInstance.post('/users', userInfo);
-                console.log(userRes.data);
 
-                if (res?.user) {
+                if (res?.user && userRes?.data) {
                     updateUserProfile(name, imageUrl)
                         .then(() => {
                             Swal.fire({
@@ -68,8 +67,6 @@ const Register = () => {
                 console.log(e)
             })
     };
-
-    console.log(imageUrl)
 
     return (
         <div className="flex flex-col lg:flex-row-reverse justify-center items-center gap-10 px-4 lg:px-16 my-10">

@@ -52,7 +52,7 @@ const ManageReviews = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {reviews.map((review) => (
-            <div key={review._id} className="card bg-base-100 shadow-md">
+            <div key={review._id} className="card bg-[#4c2c8c] text-white shadow-md">
               <div className="card-body">
                 <div className="flex items-center gap-4 mb-2">
                   <img
@@ -66,7 +66,7 @@ const ManageReviews = () => {
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-400">
                   <strong>Property:</strong> {review.propertyTitle}
                 </p>
                 <p className="mt-2">{review.description}</p>

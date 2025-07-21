@@ -23,6 +23,8 @@ import Offers from '../Pages/Dashboard/Agent/Offers';
 import BoughtProperties from '../Pages/Dashboard/User/BoughtProperties';
 import Payment from '../Pages/Dashboard/User/Payment/Payment';
 import MyReviews from '../Pages/Dashboard/User/MyReviews';
+import SoldProperties from '../Pages/Dashboard/Agent/SoldProperties';
+import AdvertiseProperty from '../Pages/Dashboard/Admin/AdvertiseProperty';
 
 const Router = createBrowserRouter([
     {
@@ -104,6 +106,10 @@ const Router = createBrowserRouter([
                 Component: ManageReviews
             },
             {
+                path : "admin/advertise",
+                Component : AdvertiseProperty
+            },
+            {
                 path: "agent/profile",
                 Component: AgentProfile
             },
@@ -116,7 +122,11 @@ const Router = createBrowserRouter([
                 Component: MyProperties
             },
             {
-                path: "requests",
+                path : "agent/soldProperties",
+                Component : SoldProperties
+            },
+            {
+                path: "agent/requests",
                 Component: Offers
             }
         ]

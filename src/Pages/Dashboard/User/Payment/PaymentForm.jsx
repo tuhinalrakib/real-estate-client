@@ -8,7 +8,8 @@ import Swal from "sweetalert2";
 import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useNavigate, useParams } from "react-router";
-
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../../components/Loader/Loader";
 
 const PaymentForm = () => {
   const { id } = useParams(); // offer id
@@ -18,28 +19,39 @@ const PaymentForm = () => {
   const elements = useElements();
   const navigate = useNavigate();
 
-  const [offer, setOffer] = useState(null);
+  // const [errors, setErrors] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
 
-  useEffect(() => {
-    // Load offer details
-    axiosSecure.get(`/offers/${id}`).then((res) => setOffer(res.data));
-  }, [axiosSecure, id]);
+  // 1. Load offer data
+  const { isPending, data: offer = {} } = useQuery({
+    queryKey: ['offers', id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/offers/${id}`);
+      return res.data;
+    }
+  });
+  const amount = offer?.offerAmount
+  const propertyId = offer?.propertyId
 
+  // 2. Create payment intent when offer is loaded
   useEffect(() => {
     if (offer?.offerAmount) {
-      // Create payment intent
+      const amountInCents = offer.offerAmount * 100;
       axiosSecure
-        .post("/offers/create-payment-intent", { price: offer.offerAmount })
+        .post("/offers/create-payment-intent", { amountInCents })
         .then((res) => {
-          console.log(res.data)
           setClientSecret(res.data.clientSecret);
+        })
+        .catch((error) => {
+          console.error("Failed to create payment intent", error);
         });
     }
   }, [axiosSecure, offer]);
-  console.log(clientSecret)
 
+  if (isPending) return <Loader />;
+
+  // 3. Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
@@ -71,15 +83,31 @@ const PaymentForm = () => {
     }
 
     if (paymentIntent.status === "succeeded") {
-      // Save transaction
-      const paymentInfo = {
-        transactionId: paymentIntent.id,
-        status: "bought",
-      };
-      await axiosSecure.patch(`/offers/pay/${id}`, paymentInfo);
+      const transactionId = paymentIntent.id;
+      // step-4 mark parcel paid also create payment history
+      const paymentData = {
+        id,
+        propertyId,
+        email: user.email,
+        amount,
+        transactionId: transactionId,
+        paymentMethod: paymentIntent.payment_method_types
+      }
+      const paymentRes = await axiosSecure.post('/payments', paymentData);
+      if (paymentRes.data.insertedId) {
 
-      Swal.fire("Success", "Payment complete! 🎉", "success");
-      navigate("/dashboard/bought");
+        // ✅ Show SweetAlert with transaction ID
+        await Swal.fire({
+          icon: 'success',
+          title: 'Payment Successful!',
+          html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
+          confirmButtonText: 'Go to My Parcels',
+        });
+
+        // ✅ Redirect to /myParcels
+        navigate('/dashboard');
+
+      }
     }
 
     setProcessing(false);
@@ -116,10 +144,11 @@ const PaymentForm = () => {
             },
           }}
         />
+
         <button
           className="btn btn-primary mt-6 w-full"
           type="submit"
-          disabled={!stripe || !clientSecret  || processing}
+          disabled={!stripe || !clientSecret || processing}
         >
           {processing ? "Processing..." : "Pay Now"}
         </button>

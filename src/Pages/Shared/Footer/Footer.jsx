@@ -12,7 +12,7 @@ const Footer = () => {
       {user && <li><NavLink to="/dashboard" className="link link-hover">Dashboard</NavLink></li>}
     </>
   return (
-    <footer className="bg-cyan-400 text-base-accent pt-10">
+    <footer className="bg-gray-600 text-white text-base-accent pt-10">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
 
         {/* Brand Info */}

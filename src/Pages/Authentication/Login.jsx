@@ -34,10 +34,8 @@ const Login = () => {
                 }
             })
             .catch(e => {
-                console.log(e.code);
 
                 let errorMessage = "Login failed";
-                // Firebase: Error (auth/invalid-credential).
 
                 if (e.code === 'auth/invalid-credential') {
                     errorMessage = "Email/Password doesn't Match"

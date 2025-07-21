@@ -17,7 +17,6 @@ const GoogleLogin = () => {
                 const user = res.user
                 const email = user?.email
                 const name = user?.displayName
-                console.log(user)
 
                 // update userinfo in the database
                 const userInfo = {

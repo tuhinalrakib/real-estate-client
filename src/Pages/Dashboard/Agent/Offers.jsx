@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const Offers = () => {
   const { user } = useAuth();
@@ -73,6 +74,9 @@ const Offers = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Offers For Agents</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-6">Requested / Offered Properties</h2>
       {offers.length === 0 ? (
         <p className="text-gray-500">No offers yet.</p>

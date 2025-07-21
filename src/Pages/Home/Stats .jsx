@@ -14,7 +14,7 @@ const Stats = () => {
         {statsData.map((stat, index) => (
           <div key={index} className="py-4">
             <h2 className="text-green-500 text-4xl font-bold">
-              <CountUp end={stat.number} duration={2.5} separator="," />
+              <CountUp end={stat.number} duration={4.5} separator="," />
             </h2>
             <p className="mt-2 text-sm text-gray-600 uppercase">{stat.label}</p>
           </div>

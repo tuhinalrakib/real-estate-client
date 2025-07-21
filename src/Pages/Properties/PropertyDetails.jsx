@@ -17,11 +17,9 @@ const PropertyDetails = () => {
     queryKey: ["property", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/admin/properties/${id}`);
-      console.log(res.data)
       return res.data;
     },
   });
-  console.log(property)
 
   const { data: reviews = [] } = useQuery({
     queryKey: ["reviews", id],
@@ -93,6 +91,7 @@ const PropertyDetails = () => {
   const onSubmitReview = (data) => {
     const review = {
       propertyId: id,
+      agentName : property.agentName,
       reviewerName: user.displayName,
       reviewerEmail: user.email,
       reviewerImage: user.photoURL,

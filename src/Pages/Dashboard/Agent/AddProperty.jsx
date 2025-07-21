@@ -43,8 +43,7 @@ const AddProperty = () => {
                 reset();
             }
         } catch (error) {
-            console.error("Add Property Error:", error);
-            Swal.fire("Error", "Failed to add property", "error");
+            Swal.fire("Error", "Failed to add property", error);
         }
     };
 
@@ -60,7 +59,7 @@ const AddProperty = () => {
     }
 
     return (
-        <div className="max-w-3xl mx-auto bg-white dark:bg-base-200 p-6 rounded shadow">
+        <div className="max-w-3xl mx-auto bg-[#4c2c8c] text-white dark:bg-base-200 p-6 rounded shadow">
             <Helmet>
                 <title>Add Property</title>
             </Helmet>

@@ -128,21 +128,17 @@ const Wishlist = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {wishlist.map((item) => (
                         <div key={item._id} className="card bg-base-100 shadow-md">
-                            {console.log(item)}
                             <figure>
                                 <img src={item.image} alt={item.title} className="w-full h-60 object-cover" />
                             </figure>
                             <div className="card-body">
                                 <h3 className="card-title">{item.title}</h3>
                                 <p><strong>Location:</strong> {item.location}</p>
-                                <p><strong>Price:</strong> ${item.priceMin} - ${item.priceMax}</p>
+                                <p><strong>Price:</strong> {item.priceMin}$ - {item.priceMax}$</p>
                                 <p><strong>Verification:</strong>
                                     <span className="capitalize ml-1 text-blue-600">{item.verificationStatus}</span>
                                 </p>
                                 <div className="flex items-center gap-2 mt-2">
-                                    {
-                                        console.log(item)
-                                    }
                                     <img
                                         src={item.agentImage}
                                         alt={item.agentName}

@@ -10,7 +10,7 @@ const LatestReviews = () => {
         .then(res => setReviews(res.data))
         .catch(err => console.error(err));
     }, []);
-    console.log(reviews)
+    
     return (
         <div>
             <section className="py-10 bg-white">

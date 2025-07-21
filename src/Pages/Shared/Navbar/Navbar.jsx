@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../Hooks/useAuth';
 import { FaHome } from 'react-icons/fa';
+import ThemeToggle from '../../../components/ThemeToggle/ThemeToggle';
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
@@ -54,6 +55,7 @@ const Navbar = () => {
           ) : (
             <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
           )}
+          <ThemeToggle></ThemeToggle>
         </div>
 
         {/* Mobile Menu */}

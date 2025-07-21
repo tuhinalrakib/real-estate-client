@@ -1,29 +1,26 @@
 import React from 'react';
 import useUserRole from '../Hooks/useUserRole';
 import { NavLink, Outlet } from 'react-router';
-import useAuth from '../hooks/useAuth';
 import { Helmet } from 'react-helmet';
+import useAuth from '../Hooks/useAuth';
 
 const DashboardLayout = () => {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
   const role = useUserRole(); // assume it returns 'user', 'agent', or 'admin'
-  
+
   const activeClass = "bg-base-200 font-semibold rounded-md";
 
   return (
     <div className="drawer lg:drawer-open min-h-screen">
-      <Helmet>
-          <title>Dashboard</title>
-      </Helmet>
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-      
+
       <div className="drawer-content flex flex-col">
         {/* Top bar */}
         <div className="w-full navbar bg-base-100 shadow px-4">
           <label htmlFor="dashboard-drawer" className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" 
-                 strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round"
+                strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
           </label>
           <div className="ml-4 text-lg font-bold">Dashboard</div>
         </div>
@@ -33,7 +30,7 @@ const DashboardLayout = () => {
           <Outlet></Outlet>
         </div>
       </div>
-      
+
       {/* Sidebar */}
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
@@ -65,8 +62,8 @@ const DashboardLayout = () => {
                 <li><NavLink to="/dashboard/agent/profile" className={({ isActive }) => isActive ? activeClass : ""}>Agent Profile</NavLink></li>
                 <li><NavLink to="/dashboard/agent/addProperty" className={({ isActive }) => isActive ? activeClass : ""}>Add Property</NavLink></li>
                 <li><NavLink to="/dashboard/agent/myProperties" className={({ isActive }) => isActive ? activeClass : ""}>My Properties</NavLink></li>
-                <li><NavLink to="/dashboard/sold-properties" className={({ isActive }) => isActive ? activeClass : ""}>Sold Properties</NavLink></li>
-                <li><NavLink to="/dashboard/requests" className={({ isActive }) => isActive ? activeClass : ""}>Requested Offers</NavLink></li>
+                <li><NavLink to="/dashboard/agent/soldProperties" className={({ isActive }) => isActive ? activeClass : ""}>Sold Properties</NavLink></li>
+                <li><NavLink to="/dashboard/agent/requests" className={({ isActive }) => isActive ? activeClass : ""}>Requested Offers</NavLink></li>
               </>
             )}
 
@@ -77,6 +74,7 @@ const DashboardLayout = () => {
                 <li><NavLink to="/dashboard/admin/makeAdmin" className={({ isActive }) => isActive ? activeClass : ""}>Manage Users</NavLink></li>
                 <li><NavLink to="/dashboard/admin/managementProperties" className={({ isActive }) => isActive ? activeClass : ""}>Manage Properties</NavLink></li>
                 <li><NavLink to="/dashboard/admin/manageReviews" className={({ isActive }) => isActive ? activeClass : ""}>Manage Reviews</NavLink></li>
+                <li><NavLink to="/dashboard/admin/advertise" className={({ isActive }) => isActive ? activeClass : ""}>Advertise Property</NavLink></li>
               </>
             )}
 

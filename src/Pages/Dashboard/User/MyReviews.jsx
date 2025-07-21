@@ -46,13 +46,14 @@ const MyReviews = () => {
           {reviews.map((review) => (
             <div
               key={review._id}
-              className="border p-4 rounded-lg shadow-md bg-white"
+              className="border p-4 rounded-lg shadow-md bg-[#5826bc] text-white"
             >
               <h3 className="text-lg font-semibold">
                 Property: {review.propertyTitle}
               </h3>
-              <p className="mt-2">{review.reviewText}</p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="mt-2"><span className="text-lg font-semibold">Agent Name:</span> {review.agentName}</p>
+              <p className="mt-2 text-gray-200">{review.description}</p>
+              <p className="text-sm text-gray-300 mt-1">
                 Reviewed on: {new Date(review.createdAt).toLocaleDateString()}
               </p>
               <button
