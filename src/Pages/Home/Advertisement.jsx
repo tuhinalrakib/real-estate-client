@@ -35,7 +35,7 @@ const Advertisement = () => {
 
     fetchProperties();
   }, [axiosInstance]);
-console.log(properties)
+
   if (loading) return <Loader />;
   if (properties.length === 0) return null;
 
