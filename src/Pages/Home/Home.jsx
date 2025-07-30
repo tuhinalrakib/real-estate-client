@@ -17,7 +17,7 @@ const Home = () => {
 
             {/* Advertisement Properties */}
             <section className="my-10 px-4 md:px-8">
-                <h2 className="text-3xl font-bold text-center mb-6">Advertisement Properties</h2>
+                {/* <h2 className="text-3xl font-bold text-center mb-6"></h2> */}
                 {/* TODO: It will get from Backend*/}
                 <Advertisement></Advertisement>
             </section>

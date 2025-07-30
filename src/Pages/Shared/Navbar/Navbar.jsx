@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="navbar-start">
           <Link to="/" className="btn btn-ghost normal-case text-xl flex items-center gap-2">
             <FaHome size={26} color='#2ae1ce' />
-            <span>RealEstatePro</span>
+            <span className='text-sm md:text-xl'>REastatePro</span>
           </Link>
         </div>
 

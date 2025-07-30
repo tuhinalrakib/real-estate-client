@@ -1,22 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import useAxios from "../../Hooks/useAxios";
+import Loader from "../../components/Loader/Loader";
 
 const Advertisement = () => {
-  const [properties,setProperties] = useState([])
-  const axiosInstance = useAxios()
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const axiosInstance = useAxios();
 
   useEffect(() => {
-  axiosInstance.get("/agents/verified?limit=4")
-    .then(res => setProperties(res.data))
-    .catch(err => console.error(err));
-}, []);
+    const fetchProperties = async () => {
+      try {
+        const res = await axiosInstance.get("/agents/verified");
+        const all = res.data || [];
 
+        const advertised = all.filter(item => item.advertised === true);
+        
+        // যদি ৪ বা তার বেশি advertised থাকে, শুধু ওগুলো দেখাও
+        if (advertised.length >= 4) {
+          setProperties(advertised.slice(0, 4));
+        } else {
+          // যদি কম থাকে, তাহলে বাকি verified থেকে মেশাও
+          const notAdvertised = all.filter(item => !item.advertised);
+          const remaining = 4 - advertised.length;
+          const additional = notAdvertised.slice(0, remaining);
+          setProperties([...advertised, ...additional]);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProperties();
+  }, [axiosInstance]);
+console.log(properties)
+  if (loading) return <Loader />;
+  if (properties.length === 0) return null;
 
   return (
     <div className="my-10 px-4 max-w-6xl mx-auto">
+      <h2 className="text-3xl font-bold text-center mb-8 text-purple-800">
+        Advertisement Properties
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {properties?.map((property) => (
+        {properties.map((property) => (
           <div key={property._id} className="card bg-base-100 shadow-md">
             <figure>
               <img
