@@ -1,99 +1,84 @@
 # 🏡 Real Estate Pro
 
-Welcome to **Real Estate Pro** — a modern full-stack platform for buying, selling, and managing properties, built with the **MERN Stack**.
+[![Live Site](https://img.shields.io/badge/Live%20Demo-0ea5e9?style=for-the-badge&logo=firebase&logoColor=white)](https://real-estate-316cb.web.app/)
+[![GitHub Repo](https://img.shields.io/badge/View%20Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tuhinalrakib/real-estate-client)
 
-🔗 **Live Site**: [https://real-estate-316cb.web.app/]
+> A modern full-stack platform for buying, selling, and managing properties — built with the **MERN Stack**.
 
-🛠️ **Admin Login**  
-- **Username**: admin77@gmail.com  
-- **Password**: 12345As@  
 ---
 
-# Technologies
+## 🔑 Admin Login (Demo)
+- **Username:** `admin77@gmail.com`  
+- **Password:** `12345As@`  
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:**  
 <p>
   <img src="https://skillicons.dev/icons?i=html,css,js,react,tailwind" alt="tech icons" />
   <img src="https://daisyui.com/images/daisyui-logo/daisyui-logomark.svg" alt="DaisyUI" width="28" />
 </p>
 
+**Backend:** Node.js, Express.js, MongoDB  
+**Auth:** Firebase Authentication + JWT  
+**Payment:** Stripe Integration  
+**Hosting:** Firebase Hosting (frontend), Render (backend)  
+
 ---
 
 ## 🚀 Features
 
-✅ **1. Role-Based Authentication**
-- Three user roles: **User**, **Agent**, and **Admin**
-- Secure login/signup using **Firebase Authentication**
+### 1. Role-Based Authentication
+- Three roles: **User**, **Agent**, and **Admin**
+- Secure login/signup with Firebase Auth
 
-✅ **2. Property Listings**
-- Users can browse and explore all available properties
-- Agents can add, update, and manage their listings
+### 2. Property Listings
+- Browse all available properties
+- Agents can add, update, and delete their listings
 
-✅ **3. Make Offers**
-- Users can make offers on properties
-- Offer status changes dynamically (pending → accepted/rejected → bought)
+### 3. Make & Manage Offers
+- Users make offers on properties
+- Offer statuses: *Pending → Accepted/Rejected → Bought*
 
-✅ **4. Integrated Stripe Payments**
-- Once an offer is accepted, the user can pay securely via Stripe
-- Payment status is updated in real-time, and transaction ID is stored
+### 4. Integrated Stripe Payments
+- Secure online payments for accepted offers
+- Real-time payment status updates & transaction ID storage
 
-✅ **5. Dashboard for All Roles**
-- User Dashboard: My Offers, Bought Properties
-- Agent Dashboard: My Listings, Offer Requests, Sold Properties
-- Admin Dashboard: Manage Users, Properties, and All Transactions
+### 5. Dedicated Dashboards
+- **User:** My Offers, Bought Properties  
+- **Agent:** My Listings, Offer Requests, Sold Properties  
+- **Admin:** Manage Users, Properties, Transactions  
 
-✅ **6. Review System**
-- Users can leave reviews on properties they bought
-- Reviews are visible on the property details page
+### 6. Review System
+- Buyers can leave reviews on purchased properties
+- Reviews displayed on property details pages
 
-✅ **7. Responsive & Mobile-Friendly UI**
-- Built with **Tailwind CSS** and **DaisyUI** for modern responsive design
+### 7. Mobile-Responsive UI
+- Tailwind CSS + DaisyUI for modern, responsive layouts
 
-✅ **8. JWT Protected API**
-- Backend routes secured with **JWT verification** and **role-based access**
+### 8. JWT-Protected APIs
+- Role-based access to backend routes
 
-✅ **9. Property Filtering**
-- Filter properties by location, price, or category
+### 9. Property Filtering
+- Search and filter by location, price, category
 
-✅ **10. Image Hosting & Upload**
-- Images are uploaded and stored via **imgBB** or another third-party service
+### 10. Image Upload & Hosting
+- Uses imgBB (or similar) for property image storage
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="./assets/homepage.png" alt="Homepage" width="700">
+</p>
+
+<p align="center">
+  <img src="./assets/dashboard.png" alt="Dashboard" width="700">
+</p>
 
 ---
 
-# Getting Started (Run Locally)
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React, React Router, Tailwind CSS, DaisyUI, Firebase Auth
-- **Backend**: Node.js, Express.js, MongoDB
-- **Auth**: Firebase + JWT
-- **Payment**: Stripe Integration
-- **Hosting**: Firebase Hosting & Render (backend)
-
----
-Folder structure
-/src
-  - /components
-  - /pages
-  - /assets
-  - /styles
-  - package.json
-- README.md
----
-
-## Prerequisites
-- Node.js (>=14) and npm/yarn
-
-## Setup
-```bash
-# clone
-git clone https://github.com/tuhinalrakib/real-estate-client.git
-cd your-repo
-
-# install
-npm install
-# or
-yarn
-
-# run (React Vite/CRA)
-npm run dev        # Vite/Next: npm run dev
-# or (CRA)
-npm start
+## 📂 Folder Structure
