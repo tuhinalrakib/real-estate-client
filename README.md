@@ -82,4 +82,9 @@
 ---
 
 ## 📂 Folder Structure
+- src/
+  - /components
+  - /pages
+  - contexts
+- packege.jon
 
