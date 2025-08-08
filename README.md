@@ -7,6 +7,13 @@ Welcome to **Real Estate Pro** — a modern full-stack platform for buying, sell
 🛠️ **Admin Login**  
 - **Username**: admin77@gmail.com  
 - **Password**: 12345As@  
+---
+
+# Technologies
+<p>
+  <img src="https://skillicons.dev/icons?i=html,css,js,react,tailwind" alt="tech icons" />
+  <img src="https://daisyui.com/images/daisyui-logo/daisyui-logomark.svg" alt="DaisyUI" width="28" />
+</p>
 
 ---
 
@@ -51,6 +58,8 @@ Welcome to **Real Estate Pro** — a modern full-stack platform for buying, sell
 
 ---
 
+# Getting Started (Run Locally)
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: React, React Router, Tailwind CSS, DaisyUI, Firebase Auth
@@ -61,14 +70,21 @@ Welcome to **Real Estate Pro** — a modern full-stack platform for buying, sell
 
 ---
 
-## 📁 Folder Structure
-/client
-/src
-/components
-/pages
-/hooks
-App.jsx
-/server
-/routes
-/middlewares
-index.js
+## Prerequisites
+- Node.js (>=14) and npm/yarn
+
+## Setup
+```bash
+# clone
+git clone https://github.com/yourusername/your-repo.git
+cd your-repo
+
+# install
+npm install
+# or
+yarn
+
+# run (React Vite/CRA)
+npm run dev        # Vite/Next: npm run dev
+# or (CRA)
+npm start
