@@ -70,8 +70,8 @@ Welcome to **Real Estate Pro** — a modern full-stack platform for buying, sell
 
 ---
 /src
-  /components
-  /pages
+  - /components
+  - /pages
   /assets
   /styles
 package.json
