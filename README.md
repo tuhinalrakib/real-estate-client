@@ -69,6 +69,14 @@ Welcome to **Real Estate Pro** — a modern full-stack platform for buying, sell
 - **Hosting**: Firebase Hosting & Render (backend)
 
 ---
+/src
+  /components
+  /pages
+  /assets
+  /styles
+package.json
+README.md
+---
 
 ## Prerequisites
 - Node.js (>=14) and npm/yarn
