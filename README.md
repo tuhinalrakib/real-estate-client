@@ -72,13 +72,14 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="./assets/homepage.png" alt="Homepage" width="700">
+  <img src="https://i.postimg.cc/fy9hg5Zd/Screenshot-2025-08-08-184402.png" alt="Homepage" width="700">
 </p>
 
 <p align="center">
-  <img src="./assets/dashboard.png" alt="Dashboard" width="700">
+  <img src="https://i.postimg.cc/W4vC2TVh/Screenshot-2025-08-08-180840.png" alt="Dashboard" width="700">
 </p>
 
 ---
 
 ## 📂 Folder Structure
+
