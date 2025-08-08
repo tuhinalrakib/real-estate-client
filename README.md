@@ -76,7 +76,7 @@ Welcome to **Real Estate Pro** — a modern full-stack platform for buying, sell
 ## Setup
 ```bash
 # clone
-git clone https://github.com/yourusername/your-repo.git
+git clone https://github.com/tuhinalrakib/real-estate-client.git
 cd your-repo
 
 # install
