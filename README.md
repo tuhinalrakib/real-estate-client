@@ -69,13 +69,14 @@ Welcome to **Real Estate Pro** — a modern full-stack platform for buying, sell
 - **Hosting**: Firebase Hosting & Render (backend)
 
 ---
+Folder structure
 /src
   - /components
   - /pages
-  /assets
-  /styles
-package.json
-README.md
+  - /assets
+  - /styles
+  - package.json
+- README.md
 ---
 
 ## Prerequisites
