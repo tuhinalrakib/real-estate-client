@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -5,6 +6,16 @@
   themes: light --default, dark, dim;
 }
 
+@plugin "daisyui/theme" {
+  name: "mytheme";
+   --color-secondary: rgba(63, 56, 122, .8);
+}
+
 *{
   scrollbar-width: none;
+}
+
+body{
+  background-color: ;
+  font-family: "Roboto", sans-serif;
 }

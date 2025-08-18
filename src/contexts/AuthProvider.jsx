@@ -15,9 +15,11 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         const user = await signInWithEmailAndPassword(auth, email, password)
 
-         // ✅ get token from backend and save to localStorage
-        const { data } = await axiosInstance.post('/jwt', { email });
-        localStorage.setItem('token', data.token);
+         // ✅ get token from backend and save to cookie
+        await axiosInstance.post('/jwt', { email }, {
+            withCredentials : true
+        });
+        
         return user
     }
 
@@ -26,8 +28,9 @@ const AuthProvider = ({ children }) => {
         const user = await createUserWithEmailAndPassword(auth, email, password)
         
         // ✅ get token from backend and save to localStorage
-        const { data } = await axiosInstance.post('/jwt', { email });
-        localStorage.setItem('token', data.token);
+        await axiosInstance.post('/jwt', { email },{
+            withCredentials : true
+        });
         return user
     }
 
@@ -37,8 +40,9 @@ const AuthProvider = ({ children }) => {
         const email = result.user.email
 
         // ✅ get token from backend and save to localStorage
-        const { data } = await axiosInstance.post('/jwt', { email });
-        localStorage.setItem('token', data.token);
+        await axiosInstance.post('/jwt', { email },{
+            withCredentials : true
+        });
         return result
     }
 
@@ -51,8 +55,10 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, { displayName: name, photoURL: photo })
     }
 
-    const logOut = () => {
-        localStorage.removeItem('token'); // 🧹 remove token from localStorage
+    const logOut = async() => {
+        await axiosInstance.post('/jwt/logout', {}, {
+            withCredentials: true
+        });
         return signOut(auth)
     }
 

@@ -15,6 +15,7 @@ const ManageProperties = () => {
       return res.data;
     },
   });
+  console.log(properties)
 
   // Mutation for verifying/rejecting property
   const statusMutation = useMutation({

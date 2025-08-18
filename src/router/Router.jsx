@@ -25,6 +25,8 @@ import Payment from '../Pages/Dashboard/User/Payment/Payment';
 import MyReviews from '../Pages/Dashboard/User/MyReviews';
 import SoldProperties from '../Pages/Dashboard/Agent/SoldProperties';
 import AdvertiseProperty from '../Pages/Dashboard/Admin/AdvertiseProperty';
+import About from '../Pages/Shared/About';
+import Contact from '../Pages/Shared/Contact';
 
 const Router = createBrowserRouter([
     {
@@ -34,6 +36,14 @@ const Router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: "about",
+                Component: About
+            },
+            {
+                path : "contact",
+                Component : Contact
             },
             {
                 path: "allProperties",
@@ -86,8 +96,8 @@ const Router = createBrowserRouter([
                 Component: Payment
             },
             {
-                path : "user/myReviews",
-                Component : MyReviews
+                path: "user/myReviews",
+                Component: MyReviews
             },
             {
                 path: "admin/makeAdmin",
@@ -106,8 +116,8 @@ const Router = createBrowserRouter([
                 Component: ManageReviews
             },
             {
-                path : "admin/advertise",
-                Component : AdvertiseProperty
+                path: "admin/advertise",
+                Component: AdvertiseProperty
             },
             {
                 path: "agent/profile",
@@ -122,8 +132,8 @@ const Router = createBrowserRouter([
                 Component: MyProperties
             },
             {
-                path : "agent/soldProperties",
-                Component : SoldProperties
+                path: "agent/soldProperties",
+                Component: SoldProperties
             },
             {
                 path: "agent/requests",

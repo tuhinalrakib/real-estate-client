@@ -5,7 +5,7 @@ import Footer from '../Pages/Shared/Footer/Footer';
 
 const MainLayouts = () => {
     return (
-        <div>
+        <div data-theme="mytheme" className='bg-secondary'>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
