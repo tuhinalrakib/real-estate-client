@@ -9,7 +9,7 @@ const statsData = [
 
 const Stats = () => {
   return (
-    <section className="my-16 px-4">
+    <section className="my-16 ">
       <div className="bg-gray-100 rounded-xl py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 text-center shadow-sm">
         {statsData.map((stat, index) => (
           <div key={index} className="py-4">

@@ -3,22 +3,22 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
   return (
-    <section className="bg-seconday/10 text-white py-16">
+    <section className="bg-seconday/10 py-16">
       <div className="container mx-auto px-6 lg:px-20">
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-black/50 max-w-2xl mx-auto">
             Have questions or want to find your dream property? Contact us and our experts will assist you promptly.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white shadow-lg rounded-lg p-8">
+          <div className="bg-secondary/70 backdrop-blur-lg shadow-lg rounded-lg p-8">
             <form className="space-y-6">
               <div>
-                <label className="block mb-2 font-medium text-gray-400">Name</label>
+                <label className="block mb-2 font-medium text-gray-200">Name</label>
                 <input
                   type="text"
                   placeholder="Your Name"
@@ -26,7 +26,7 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <label className="block mb-2 font-medium text-gray-400">Email</label>
+                <label className="block mb-2 font-medium text-gray-200">Email</label>
                 <input
                   type="email"
                   placeholder="Your Email"
@@ -34,7 +34,7 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <label className="block mb-2 font-medium text-gray-400">Message</label>
+                <label className="block mb-2 font-medium text-gray-200">Message</label>
                 <textarea
                   placeholder="Your Message"
                   className="w-full border border-gray-300 rounded-md px-4 py-2 h-32 focus:ring-2 focus:ring-primary focus:outline-none"
@@ -50,12 +50,12 @@ const Contact = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div className="space-y-8 ">
             <div className="flex items-start gap-4">
               <FaMapMarkerAlt className="text-primary text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Address</h4>
-                <p className="text-gray-400">123 Main Street, Dhaka, Bangladesh</p>
+                <p className="text-black/50">123 Main Street, Dhaka, Bangladesh</p>
               </div>
             </div>
 
@@ -63,7 +63,7 @@ const Contact = () => {
               <FaPhoneAlt className="text-primary text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Phone</h4>
-                <p className="text-gray-400">+880 160 925 355</p>
+                <p className="text-black/50">+880 160 925 355</p>
               </div>
             </div>
 
@@ -71,7 +71,7 @@ const Contact = () => {
               <FaEnvelope className="text-primary text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Email</h4>
-                <p className="text-gray-600">eng.tuhin77@gmail.com</p>
+                <p className="text-black/50">eng.tuhin77@gmail.com</p>
               </div>
             </div>
 

@@ -83,24 +83,20 @@ const Register = () => {
             </div>
 
             {/* Form Card */}
-            <div className="card w-full max-w-md bg-white shadow-2xl border border-gray-200">
+            <div className="card w-full max-w-md bg-white/30 shadow-2xl border border-gray-200">
                 <div className="card-body">
                     <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">Create an Account</h1>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                         {/* Image Upload */}
                         <div>
-                            <label htmlFor="file-upload" className="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
-                            <label
-                                htmlFor="file-upload"
-                                className="cursor-pointer inline-flex items-center px-4 py-2 border border-indigo-500 text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
-                            >
-                                <input
-                                    onChange={handleImageUpload}
-                                    type="file"
-                                    className="input input-bordered w-full"
-                                />
-                            </label>
+                            <label className="block text-sm font-medium text-white mb-1">Profile Picture</label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageUpload}
+                                className="file-input file-input-bordered w-full bg-white/20 "
+                            />
                         </div>
 
                         {/* Name */}

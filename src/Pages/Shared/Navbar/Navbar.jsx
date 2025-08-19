@@ -25,8 +25,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `rounded-lg px-3 py-2 flex items-center transition duration-300 ${
-              isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
+            `rounded-lg px-3 py-2 flex items-center transition duration-300 ${isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
             }`
           }
         >
@@ -38,12 +37,11 @@ const Navbar = () => {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            `rounded-lg px-3 py-2 transition duration-300 ${
-              isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
+            `rounded-lg px-3 py-2 transition duration-300 ${isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
             }`
           }
         >
-          <FcAbout size={24} className="mr-1"/>
+          <FcAbout size={24} className="mr-1" />
           About
         </NavLink>
       </li>
@@ -51,12 +49,11 @@ const Navbar = () => {
         <NavLink
           to="/contact"
           className={({ isActive }) =>
-            `rounded-lg px-3 py-2 transition duration-300 ${
-              isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
+            `rounded-lg px-3 py-2 transition duration-300 ${isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
             }`
           }
         >
-          <GrContactInfo size={24} className="mr-1"/>
+          <GrContactInfo size={24} className="mr-1" />
           Contact
         </NavLink>
       </li>
@@ -70,8 +67,7 @@ const Navbar = () => {
         <NavLink
           to="/allProperties"
           className={({ isActive }) =>
-            `rounded-lg px-3 py-2 flex items-center transition duration-300 ${
-              isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
+            `rounded-lg px-3 py-2 flex items-center transition duration-300 ${isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
             }`
           }
         >
@@ -83,8 +79,7 @@ const Navbar = () => {
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
-            `rounded-lg px-3 py-2 flex items-center transition duration-300 ${
-              isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
+            `rounded-lg px-3 py-2 flex items-center transition duration-300 ${isActive ? "bg-white/20 text-teal-300" : "hover:bg-white/10"
             }`
           }
         >
@@ -108,7 +103,7 @@ const Navbar = () => {
             >
               <FaHome size={26} className="text-teal-400" />
               <span className="bg-gradient-to-r from-teal-400 to-purple-400 bg-clip-text text-transparent">
-                REastatePro
+                Habikon
               </span>
             </Link>
           </div>
@@ -132,6 +127,7 @@ const Navbar = () => {
                       <img
                         src={user.photoURL || "/default-avatar.png"}
                         alt="User"
+                        loading="lazy"
                       />
                     </div>
                   </label>
@@ -142,16 +138,14 @@ const Navbar = () => {
                     <li>
                       <span className="font-semibold">{user.displayName}</span>
                     </li>
-                    <li>
-                      <button
-                        onClick={handleLogout}
-                        className="hover:text-red-400 transition"
-                      >
-                        Logout
-                      </button>
-                    </li>
                   </ul>
                 </div>
+                <button
+              onClick={handleLogout}
+              className="bg-white/20 text-white btn btn-sm btn-info transition"
+            >
+              Logout
+            </button>
               </>
             ) : (
               <>
@@ -169,6 +163,7 @@ const Navbar = () => {
                 </Link>
               </>
             )}
+            
             <ThemeToggle />
           </div>
 

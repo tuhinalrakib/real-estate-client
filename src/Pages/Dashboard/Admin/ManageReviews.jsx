@@ -59,6 +59,7 @@ const ManageReviews = () => {
                     src={review.reviewerImage}
                     alt={review.reviewerName}
                     className="w-10 h-10 rounded-full"
+                    loading="lazy"
                   />
                   <div>
                     <p className="font-bold">{review.reviewerName}</p>

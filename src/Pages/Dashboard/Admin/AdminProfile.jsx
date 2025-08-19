@@ -5,6 +5,7 @@ import useUserRole from '../../../Hooks/useUserRole';
 const AdminProfile = () => {
     const { user } = useAuth();
     const role = useUserRole();
+    console.log(user)
 
     return (
         <div className="bg-[#5826bc] text-white max-w-xl mx-auto mt-5 dark:bg-base-200 shadow-md rounded-xl p-6">

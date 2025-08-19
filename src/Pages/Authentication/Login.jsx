@@ -36,11 +36,11 @@ const Login = () => {
             })
             .catch(e => {
 
-                let errorMessage = "Login failed";
+                let errorMessage = e.message;
 
-                if (e.code === 'auth/invalid-credential') {
-                    errorMessage = "Email/Password doesn't Match"
-                }
+                // if (e.code === 'auth/invalid') {
+                //     errorMessage = "Email/Password doesn't Match"
+                // }
 
                 // toast(errorMessage)
 
@@ -58,7 +58,7 @@ const Login = () => {
             <Helmet>
                 <title>Login</title>
             </Helmet>
-            <div className="min-h-screen flex items-center justify-center mt-11 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 px-4 py-10">
+            <div className="min-h-screen flex items-center justify-center px-10 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 py-10">
                 <div className="flex flex-col lg:flex-row items-center gap-10 max-w-6xl w-full">
 
                     {/* Lottie Animation */}
@@ -89,14 +89,29 @@ const Login = () => {
                                     className="input input-bordered w-full focus:ring-2 focus:ring-indigo-400 transition-all"
                                 />
                             </div>
-
+                            {
+                                errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                            }
                             {/* Password */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Password</label>
                                 <div className="relative">
                                     <input
                                         type={showPassword ? "text" : "password"}
-                                        name="password"
+                                        {...register("password",
+                                            {
+                                                required: "Password is Required",
+                                                minLength: {
+                                                    value: 6,
+                                                    message: "Password must be at least 6 characters"
+                                                },
+                                                validate: {
+                                                    hasUpperCase: (value) =>
+                                                        /[A-Z]/.test(value) || "Password must contain at least one uppercase letter",
+                                                    hasSpecialChar: (value) =>
+                                                        /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character"
+                                                }
+                                            })}
                                         placeholder="Enter your password"
                                         className="input input-bordered w-full focus:ring-2 focus:ring-indigo-400 transition-all"
                                         required
@@ -104,7 +119,7 @@ const Login = () => {
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-indigo-500"
+                                        className="absolute cursor-pointer right-1.5 top-5 -translate-y-1/2 text-gray-600 hover:text-indigo-500"
                                     >
                                         {showPassword ? <FaEye size={22} /> : <IoMdEyeOff size={22} />}
                                     </button>
@@ -143,51 +158,17 @@ const Login = () => {
                 </div>
             </div>
         </>
-        // <div className="min-h-screen flex items-center justify-center px-10 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 px-4 py-10">
-        //     <Helmet>
-        //         <title>Login</title>
-        //     </Helmet>
-        //     <div className="w-full lg:w-1/2 bg-white/40 backdrop-blur-lg shadow-xl rounded-3xl p-8 border border-white/20">
-        //         <h1 className="text-3xl text-center font-bold">Login now!</h1>
-        //         <div className="card-body">
-        //             <form onSubmit={handleSubmit(onSubmit)}>
-        //                 <fieldset className="fieldset">
-        //                     <label className="label">Email</label>
-        //                     <input
-        //                         type="email"
-        //                         {...register("email", {
-        //                             required: "Email is Required"
-        //                         })}
-        //                         className="input"
-        //                         placeholder="Email"
-        //                     />
-        //                     {
-        //                         errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
-        //                     }
+
         //                     <label className="label">Password</label>
         //                     <div className="relative">
         //                         <input
-        //                             type={showPassword ? "text" : "password"}
-        //                             {...register("password",
-        //                                 {
-        //                                     required: "Password is Required",
-        //                                     minLength: {
-        //                                         value: 6,
-        //                                         message: "Password must be at least 6 characters"
-        //                                     },
-        //                                     validate: {
-        //                                         hasUpperCase: (value) =>
-        //                                             /[A-Z]/.test(value) || "Password must contain at least one uppercase letter",
-        //                                         hasSpecialChar: (value) =>
-        //                                             /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character"
-        //                                     }
-        //                                 })}
+
         //                             placeholder="Password"
         //                             className="input input-bordered w-full"
         //                         />
         //                         <button 
         //                         type="button"
-        //                         onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer right-1 top-1.5">
+        //                         onClick={() => setShowPassword(!showPassword)} className="">
         //                             {
         //                                 showPassword ? <FaEye size={24} /> : <FaEyeSlash size={24} />
         //                             }

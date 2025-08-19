@@ -6,6 +6,8 @@ import Advertisement from './Advertisement';
 import LatestReviews from './LatestReviews';
 import HowItWorks from './HowItWorks';
 import Stats from './Stats ';
+import Newsletter from './Newsletter';
+import SalesPromotion from './SalesPromotion';
 
 const Home = () => {
     return (
@@ -24,7 +26,6 @@ const Home = () => {
 
             {/* Latest Reviews */}
             <section className="my-10 px-4 md:px-8">
-                <h2 className="text-3xl font-bold text-center mb-6">Latest User Reviews</h2>
                 {/* TODO: It will get Backend */}
                 <LatestReviews></LatestReviews>
             </section>
@@ -37,6 +38,12 @@ const Home = () => {
             <section className="my-10 px-4 md:px-8">
                 {/* TODO */}
                 <HowItWorks></HowItWorks>
+            </section>
+            <section className="my-10 px-4 md:px-8">
+                <Newsletter />
+            </section>
+            <section className="my-10 px-4 md:px-8">
+                <SalesPromotion />
             </section>
 
             <section className="my-10 px-4 md:px-8">

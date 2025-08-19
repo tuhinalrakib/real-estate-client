@@ -25,38 +25,47 @@ const AdvertiseProperty = () => {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return <p className="text-center mt-10 font-semibold">Loading...</p>;
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Advertise Property</h2>
-      <div className="overflow-x-auto">
-        <table className="table w-full table-zebra">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Price Range</th>
-              <th>Agent</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {properties.map((prop, index) => (
-              <tr key={prop._id}>
-                <td>{index + 1}</td>
-                <td>
-                  <img
-                    src={prop.image}
-                    alt={prop.title}
-                    className="w-16 h-16 object-cover rounded"
-                  />
-                </td>
-                <td>{prop.title}</td>
-                <td>${prop.priceMin} - ${prop.priceMax}</td>
-                <td>{prop.agentName}</td>
-                <td>
+      <h2 className="text-3xl font-bold mb-6 text-gray-800">
+        Advertise Property
+      </h2>
+
+      {properties.length === 0 ? (
+        <p className="text-gray-500">No verified properties available.</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {properties.map((prop) => (
+            <div
+              key={prop._id}
+              className="card bg-white/20 shadow-xl rounded-2xl border border-gray-100 hover:shadow-2xl transition duration-300"
+            >
+              {/* Property Image */}
+              <figure>
+                <img
+                  src={prop.image}
+                  alt={prop.title}
+                  className="w-full h-48 object-cover rounded-t-2xl"
+                />
+              </figure>
+
+              {/* Card Content */}
+              <div className="card-body">
+                <h3 className="card-title text-lg font-semibold text-gray-800">
+                  {prop.title}
+                </h3>
+                <p className="text-sm text-gray-500">
+                  Price: ${prop.priceMin} – ${prop.priceMax}
+                </p>
+
+                <p className="text-xs text-gray-600 mt-1">
+                  Agent: <span className="font-medium">{prop.agentName}</span>
+                </p>
+
+                <div className="card-actions mt-4">
                   {prop.advertised ? (
                     <button className="btn btn-sm btn-success" disabled>
                       Advertised
@@ -69,12 +78,12 @@ const AdvertiseProperty = () => {
                       Advertise
                     </button>
                   )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

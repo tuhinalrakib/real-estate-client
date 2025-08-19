@@ -42,7 +42,7 @@ const DashboardLayout = () => {
         </div>
 
         {/* Main Content */}
-        <main className="p-6 bg-base-200 flex-1">
+        <main className="p-6 bg-secondary/20 flex-1">
           <Outlet />
         </main>
       </div>

@@ -5,7 +5,7 @@ import Footer from '../Pages/Shared/Footer/Footer';
 
 const AuthLayouts = () => {
     return (
-        <div>
+        <div data-theme="mytheme" className='bg-secondary/30'>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
