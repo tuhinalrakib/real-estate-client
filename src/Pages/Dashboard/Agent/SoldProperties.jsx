@@ -50,6 +50,7 @@ const SoldProperties = () => {
                 src={offer.image}
                 alt={offer.propertyTitle}
                 className="w-full h-48 object-cover rounded"
+                loading='lazy'
               />
               <h3 className="text-xl font-bold">{offer.title}</h3>
               <p>

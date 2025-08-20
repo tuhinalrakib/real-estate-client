@@ -127,7 +127,7 @@ const Wishlist = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {wishlist.map((item) => (
-                        <div key={item._id} className="card bg-base-100 shadow-md">
+                        <div key={item._id} className="card bg-white/50 shadow-md">
                             <figure>
                                 <img src={item.image} alt={item.title} className="w-full h-60 object-cover" />
                             </figure>

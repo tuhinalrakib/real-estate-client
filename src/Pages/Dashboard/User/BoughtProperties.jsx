@@ -28,7 +28,7 @@ const BoughtProperties = () => {
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {bought.map((item) => (
-            <div key={item._id} className="card bg-white shadow-md rounded-xl overflow-hidden">
+            <div key={item._id} className="card bg-white/70 shadow-md rounded-xl overflow-hidden">
               <figure>
                 <img
                   src={item.image}
@@ -37,7 +37,7 @@ const BoughtProperties = () => {
                 />
               </figure>
               <div className="card-body">
-                <h3 className="card-title text-lg">{item.title}</h3>
+                <h3 className="text-black card-title text-lg">{item.title}</h3>
                 <p className="text-gray-600">📍 {item.location}</p>
                 <p className="text-gray-600">Agent: {item.agentName || "N/A"}</p>
                 <p className="text-gray-800 font-semibold">

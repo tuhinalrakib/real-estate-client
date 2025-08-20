@@ -18,35 +18,34 @@ const Home = () => {
             </section>
 
             {/* Advertisement Properties */}
-            <section className="my-10 px-4 md:px-8">
-                {/* <h2 className="text-3xl font-bold text-center mb-6"></h2> */}
+            <section className="my-10 px-2 md:px-8">
                 {/* TODO: It will get from Backend*/}
                 <Advertisement></Advertisement>
             </section>
 
             {/* Latest Reviews */}
-            <section className="my-10 px-4 md:px-8">
+            <section className="my-10 px-2 md:px-8">
                 {/* TODO: It will get Backend */}
                 <LatestReviews></LatestReviews>
             </section>
 
             {/* Extra Sections */}
-            <section data-aos="zoom-in-down" className="my-10 px-4 md:px-8">
+            <section data-aos="zoom-in-down" className="my-10 px-2 md:px-8">
                 <BenefitsSection></BenefitsSection>
             </section>
 
-            <section className="my-10 px-4 md:px-8">
+            <section className="my-10 px-2 md:px-8">
                 {/* TODO */}
                 <HowItWorks></HowItWorks>
             </section>
-            <section className="my-10 px-4 md:px-8">
+            <section className="my-10 px-2 md:px-8">
                 <Newsletter />
             </section>
-            <section className="my-10 px-4 md:px-8">
+            <section className="my-10 px-2 md:px-8">
                 <SalesPromotion />
             </section>
 
-            <section className="my-10 px-4 md:px-8">
+            <section className="my-10 px-2 md:px-8">
                 {/* TODO */}
                 <Stats></Stats>
             </section>

@@ -6,7 +6,7 @@ import CountUp from 'react-countup';
 const About = () => {
   const { theme } = useAuth()
   return (
-    <section className="bg-secondary/20  py-16">
+    <section className="bg-secondary/5  py-16">
       <div className="container mx-auto px-6 lg:px-20">
         {/* Heading */}
         <div className="text-center mb-12">

@@ -156,14 +156,14 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="btn btn-xs md:btn-sm rounded-xl border border-white/30 bg-white/10 text-white hover:bg-white/20 transition"
+                  className="btn btn-sm rounded-xl border border-white/30 bg-white/10 text-white hover:bg-white/20 transition"
                 >
-                  <CiLogin className="w-3"/>
+                  <CiLogin className="w-4"/>
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="btn btn-xs md:btn-sm rounded-xl bg-secondary/80 text-white hover:bg-secondary transition"
+                  className="btn btn-sm hidden md:flex md:btn-sm rounded-xl bg-secondary/80 text-white hover:bg-secondary transition"
                 >
                   <GiArchiveRegister className="w-3"/>
                   Register

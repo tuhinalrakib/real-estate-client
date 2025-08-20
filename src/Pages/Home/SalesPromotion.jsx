@@ -1,6 +1,7 @@
 // src/components/SalesPromotion.jsx
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const promotions = [
   {
@@ -28,7 +29,7 @@ const promotions = [
 
 const SalesPromotion = () => {
   return (
-    <section className="max-w-7xl mx-auto">
+    <section>
       <motion.h2
         className="text-4xl font-extrabold text-center mb-10 text-purple-700"
         initial={{ opacity: 0, y: -30 }}
@@ -64,9 +65,11 @@ const SalesPromotion = () => {
               <p className="text-sm md:text-base text-gray-200 mb-4">
                 {promo.description}
               </p>
-              <button className="px-5 py-2 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition">
+              <Link to="/allProperties">
+              <button className="px-5 py-2 cursor-pointer bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition">
                 {promo.cta}
               </button>
+              </Link>
             </div>
           </motion.div>
         ))}

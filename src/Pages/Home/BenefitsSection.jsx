@@ -30,10 +30,9 @@ const benefits = [
 
 const BenefitsSection = () => {
   return (
-    <section className="my-16 ">
+    <section className="my-5 ">
       <motion.h2
         className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-purple-700"
-        initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
@@ -42,14 +41,10 @@ const BenefitsSection = () => {
 
       <div className="grid gap-8 md:grid-cols-3">
         {benefits.map(({ id, title, image, description }, index) => (
-          <motion.div
+          <div
+            data-aos ="flip-left"
             key={id}
-            className="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-2xl transition-all duration-300"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }} // 👈 fixes disappearing
-            transition={{ delay: index * 0.2, duration: 0.6 }}
-            whileHover={{ scale: 1.05 }}
+            className="bg-white/50 shadow-lg rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-2xl transition-all duration-300"
           >
             <img
               src={image}
@@ -58,7 +53,7 @@ const BenefitsSection = () => {
             />
             <h3 className="text-xl font-semibold mb-2 text-gray-800">{title}</h3>
             <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

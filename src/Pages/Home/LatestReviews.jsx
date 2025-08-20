@@ -29,8 +29,8 @@ const LatestReviews = () => {
     );
 
   return (
-    <section className="py-5 rounded-xl">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="rounded-xl">
+      <div>
         {/* Section Title */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-purple-700 mb-12">
           Latest Reviews
@@ -40,7 +40,7 @@ const LatestReviews = () => {
         <Swiper
           modules={[Autoplay]}
           spaceBetween={30}
-          slidesPerView={2}
+          // slidesPerView={1.8}
           loop={true}
           autoplay={{
             delay: 0,
@@ -48,15 +48,15 @@ const LatestReviews = () => {
           }}
           speed={3500}
           breakpoints={{
-            640: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 4 },
-            1280: { slidesPerView: 5 },
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 1 },
+            1024: { slidesPerView: 1.5 },
+            1280: { slidesPerView: 1.8 },
           }}
         >
           {reviews.map((review) => (
             <SwiperSlide key={review._id}>
-              <div className="bg-white border rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
+              <div className="bg-white/70 border rounded-2xl w-full p-6 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
                 {/* Reviewer Info */}
                 <div className="flex items-center gap-4 mb-4">
                   <img

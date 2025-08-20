@@ -39,7 +39,7 @@ const Advertisement = () => {
   if (properties.length === 0) return null;
 
   return (
-    <section className="my-14 px-4 max-w-7xl mx-auto">
+    <section >
       {/* Heading */}
       <motion.h2
         className="text-4xl font-extrabold text-center mb-10 text-purple-700"

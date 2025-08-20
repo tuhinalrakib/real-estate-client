@@ -92,9 +92,14 @@ const MyProperties = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {properties.map((property) => (
-            <div key={property._id} className="card bg-base-100 shadow-md">
+            <div key={property._id} className="card bg-secondary/40 shadow-md">
               <figure>
-                <img src={property.image} alt={property.title} className="w-full h-52 object-cover" />
+                <img 
+                src={property.image} 
+                alt={property.title} 
+                className="w-full h-52 object-cover" 
+                loading="lazy"
+                />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{property.title}</h2>

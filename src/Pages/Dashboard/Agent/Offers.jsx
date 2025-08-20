@@ -6,11 +6,10 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Helmet } from "react-helmet";
 
 const Offers = () => {
-  const { user } = useAuth();
+  const { user, theme } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  // Fetch offers made to this agent
   const { data: offers = [], isLoading } = useQuery({
     queryKey: ["agentOffers", user?.email],
     queryFn: async () => {
@@ -19,7 +18,6 @@ const Offers = () => {
     },
   });
 
-  // Mutation for accepting an offer
   const acceptMutation = useMutation({
     mutationFn: async (offer) => {
       return axiosSecure.patch(`/agents/offers/accept/${offer._id}`, {
@@ -32,7 +30,6 @@ const Offers = () => {
     },
   });
 
-  // Mutation for rejecting an offer
   const rejectMutation = useMutation({
     mutationFn: async (id) => {
       return axiosSecure.patch(`/agents/offers/reject/${id}`);
@@ -73,74 +70,82 @@ const Offers = () => {
   if (isLoading) return <p>Loading offers...</p>;
 
   return (
-    <div>
+    <div className="px-4 py-6">
       <Helmet>
         <title>Offers For Agents</title>
       </Helmet>
       <h2 className="text-2xl font-bold mb-6">Requested / Offered Properties</h2>
+
       {offers.length === 0 ? (
         <p className="text-gray-500">No offers yet.</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Property</th>
-                <th>Location</th>
-                <th>Buyer</th>
-                <th>Email</th>
-                <th>Offer ($)</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {offers.map((offer, index) => (
-                <tr key={offer._id}>
-                  <td>{index + 1}</td>
-                  <td>{offer.title}</td>
-                  <td>{offer.location}</td>
-                  <td>{offer.buyerName}</td>
-                  <td>{offer.buyerEmail}</td>
-                  <td>${offer.offerAmount}</td>
-                  <td>
-                    <span
-                      className={`capitalize font-semibold ${
-                        offer.status === "accepted"
-                          ? "text-green-600"
-                          : offer.status === "rejected"
-                          ? "text-red-500"
-                          : "text-yellow-500"
-                      }`}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {offers.map((offer, index) => (
+            <div
+              key={offer._id}
+              className="bg-white border rounded-lg shadow-md p-6 transition hover:shadow-lg"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold text-purple-700 mb-1">
+                  {offer.title}
+                </h3>
+                <p className="text-sm text-gray-600">{offer.location}</p>
+              </div>
+
+              <div className="mb-4">
+                <p className="text-sm text-gray-700">
+                  <span className="font-medium">Buyer:</span>{" "}
+                  {offer.buyerName}
+                </p>
+                <p className="text-sm text-gray-700">
+                  <span className="font-medium ">Email:</span>{" "}
+                  {offer.buyerEmail}
+                </p>
+              </div>
+
+              <div className="mb-4">
+                <p className="text-sm">
+                  <span className="font-medium text-gray-700">Offer:</span>{" "}
+                  <span className="text-green-600 font-semibold">${offer.offerAmount}</span>
+                </p>
+                <p className="text-sm mt-1">
+                  <span className="font-medium text-gray-700">Status:</span>{" "}
+                  <span
+                    className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
+                      offer.status === "accepted"
+                        ? "bg-green-100 text-green-700"
+                        : offer.status === "rejected"
+                        ? "bg-red-100 text-red-600"
+                        : "bg-yellow-100 text-yellow-600"
+                    }`}
+                  >
+                    {offer.status}
+                  </span>
+                </p>
+              </div>
+
+              <div className="flex gap-2">
+                {offer.status === "pending" ? (
+                  <>
+                    <button
+                      onClick={() => handleAccept(offer)}
+                      className="px-3 py-1 text-sm rounded bg-green-600 hover:bg-green-700 text-white"
                     >
-                      {offer.status}
-                    </span>
-                  </td>
-                  <td className="space-x-2">
-                    {offer.status === "pending" ? (
-                      <>
-                        <button
-                          onClick={() => handleAccept(offer)}
-                          className="btn btn-xs btn-success"
-                        >
-                          Accept
-                        </button>
-                        <button
-                          onClick={() => handleReject(offer._id)}
-                          className="btn btn-xs btn-error"
-                        >
-                          Reject
-                        </button>
-                      </>
-                    ) : (
-                      <span className="text-gray-400">No actions</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      Accept
+                    </button>
+                    <button
+                      onClick={() => handleReject(offer._id)}
+                      className="px-3 py-1 text-sm rounded bg-red-500 hover:bg-red-600 text-white"
+                    >
+                      Reject
+                    </button>
+                  </>
+                ) : (
+                  <span className="text-gray-400 text-sm italic">No actions available</span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
