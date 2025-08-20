@@ -49,19 +49,20 @@ const AdvertiseProperty = () => {
                   src={prop.image}
                   alt={prop.title}
                   className="w-full h-48 object-cover rounded-t-2xl"
+                  loading="lazy"
                 />
               </figure>
 
               {/* Card Content */}
               <div className="card-body">
-                <h3 className="card-title text-lg font-semibold text-gray-800">
+                <h3 className="card-title text-lg font-semibold ">
                   {prop.title}
                 </h3>
-                <p className="text-sm text-gray-500">
-                  Price: ${prop.priceMin} – ${prop.priceMax}
+                <p className="text-sm ">
+                  Price: <span className="font-bold">{prop.priceMin}$</span> – <span className="font-bold">{prop.priceMax}$</span>
                 </p>
 
-                <p className="text-xs text-gray-600 mt-1">
+                <p className="text-xs  mt-1">
                   Agent: <span className="font-medium">{prop.agentName}</span>
                 </p>
 

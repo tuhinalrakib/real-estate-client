@@ -3,14 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { Link } from "react-router";
 import Loader from "../../components/Loader/Loader";
-import useUserRole from "../../Hooks/useUserRole";
 import { motion } from "framer-motion";
 
 const AllProperties = () => {
   const axiosSecure = useAxiosSecure();
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("asc"); // asc or desc
-  const role = useUserRole();
 
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["verified-properties"],
@@ -32,7 +30,7 @@ const AllProperties = () => {
   // Sort by priceMin
   const sortedProperties = useMemo(() => {
     return [...filtered].sort((a, b) =>
-      sortOrder === "asc" ? a.priceMin - b.priceMin : b.priceMin - a.priceMin
+      sortOrder === "asc" ? b.priceMin - a.priceMin : a.priceMin - b.priceMin
     );
   }, [filtered, sortOrder]);
 
@@ -68,7 +66,7 @@ const AllProperties = () => {
         <div className="flex items-center gap-2">
           <label className="text-gray-700 font-medium">Sort by Price:</label>
           <select
-            value={sortOrder}
+            value={!sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
             className="select select-bordered"
           >
@@ -149,7 +147,7 @@ const AllProperties = () => {
                   <Link to={`/property/${property._id}`} className="mt-auto">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
-                      className="px-5 py-2 rounded-xl bg-purple-600 text-white text-sm font-semibold shadow-md hover:bg-purple-700 transition-all"
+                      className="px-5 py-2 cursor-pointer rounded-xl bg-purple-600 text-white text-sm font-semibold shadow-md hover:bg-purple-700 transition-all"
                     >
                       View Details
                     </motion.button>

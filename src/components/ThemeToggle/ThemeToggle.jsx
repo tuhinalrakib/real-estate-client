@@ -1,10 +1,9 @@
 // components/ThemeToggle.jsx
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useAuth from "../../Hooks/useAuth";
 
 const ThemeToggle = () => {
-    const [theme, setTheme] = useState(() => {
-        return localStorage.getItem("theme") || "light";
-    });
+    const { theme, setTheme } = useAuth()
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);

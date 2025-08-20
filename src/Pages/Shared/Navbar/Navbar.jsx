@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import { FaHome } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
@@ -6,13 +6,18 @@ import { TbHomeSearch } from "react-icons/tb";
 import ThemeToggle from "../../../components/ThemeToggle/ThemeToggle";
 import { FcAbout } from "react-icons/fc";
 import { GrContactInfo } from "react-icons/gr";
+import { CiLogin } from "react-icons/ci";
+import { GiArchiveRegister } from "react-icons/gi";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const navigate = useNavigate()
 
   const handleLogout = async () => {
     try {
-      await logOut();
+      await logOut()
+      navigate("/")
+      ;
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -117,7 +122,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Side */}
-          <div className="navbar-end flex items-center gap-2">
+          <div className="navbar-end flex items-center gap-1 md:gap-2">
             {user ? (
               <>
                 {/* User Dropdown */}
@@ -151,14 +156,16 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="btn btn-sm rounded-xl border border-white/30 bg-white/10 text-white hover:bg-white/20 transition"
+                  className="btn btn-xs md:btn-sm rounded-xl border border-white/30 bg-white/10 text-white hover:bg-white/20 transition"
                 >
+                  <CiLogin className="w-3"/>
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="btn btn-sm rounded-xl bg-secondary/80 text-white hover:bg-secondary transition"
+                  className="btn btn-xs md:btn-sm rounded-xl bg-secondary/80 text-white hover:bg-secondary transition"
                 >
+                  <GiArchiveRegister className="w-3"/>
                   Register
                 </Link>
               </>
@@ -168,7 +175,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu */}
-          <div className="dropdown lg:hidden">
+          <div className="dropdown dropdown-end lg:hidden">
             <label tabIndex={0} className="btn btn-ghost btn-circle text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +194,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 rounded-xl bg-primary/80 backdrop-blur-lg border border-white/20 shadow-lg w-52 text-white"
+              className="menu menu-sm dropdown-content  mt-3 z-[1] p-2 rounded-xl bg-primary/80 backdrop-blur-lg border border-white/20 shadow-lg w-52 text-white"
             >
               {publicLinks}
               {user && privateLinks}

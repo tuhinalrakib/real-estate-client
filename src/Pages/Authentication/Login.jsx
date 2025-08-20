@@ -58,7 +58,7 @@ const Login = () => {
             <Helmet>
                 <title>Login</title>
             </Helmet>
-            <div className="min-h-screen flex items-center justify-center px-10 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 py-10">
+            <div className="min-h-screen flex items-center justify-center px-2 md:px-10 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 py-10">
                 <div className="flex flex-col lg:flex-row items-center gap-10 max-w-6xl w-full">
 
                     {/* Lottie Animation */}

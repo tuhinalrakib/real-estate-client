@@ -1,14 +1,16 @@
 import React from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
 
 const Contact = () => {
+  const { theme } = useAuth()
   return (
     <section className="bg-seconday/10 py-16">
       <div className="container mx-auto px-6 lg:px-20">
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-black/50 max-w-2xl mx-auto">
+          <p className={`${theme === "dark" ? "text-white/70" : "text-black/50"} max-w-2xl mx-auto`}>
             Have questions or want to find your dream property? Contact us and our experts will assist you promptly.
           </p>
         </div>
@@ -55,7 +57,7 @@ const Contact = () => {
               <FaMapMarkerAlt className="text-primary text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Address</h4>
-                <p className="text-black/50">123 Main Street, Dhaka, Bangladesh</p>
+                <p className={`${theme === "dark" ? "text-white/70" : "text-black/50"}`}>123 Main Street, Dhaka, Bangladesh</p>
               </div>
             </div>
 
@@ -63,7 +65,7 @@ const Contact = () => {
               <FaPhoneAlt className="text-primary text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Phone</h4>
-                <p className="text-black/50">+880 160 925 355</p>
+                <p className={`${theme === "dark" ? "text-white/70" : "text-black/50"}`}>+880 160 925 355</p>
               </div>
             </div>
 
@@ -71,7 +73,7 @@ const Contact = () => {
               <FaEnvelope className="text-primary text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Email</h4>
-                <p className="text-black/50">eng.tuhin77@gmail.com</p>
+                <p className={`${theme === "dark" ? "text-white/70" : "text-black/50"}`}>eng.tuhin77@gmail.com</p>
               </div>
             </div>
 

@@ -10,6 +10,9 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const axiosInstance = useAxios()
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem("theme") || "light";
+    });
 
     const loginUser = async (email, password) => {
         setLoading(true)
@@ -82,7 +85,9 @@ const AuthProvider = ({ children }) => {
         loading,
         logOut,
         googleLogin,
-        firebaseEmailVerify
+        firebaseEmailVerify,
+        theme,
+        setTheme
     }
 
     return <AuthContext value={authData}>

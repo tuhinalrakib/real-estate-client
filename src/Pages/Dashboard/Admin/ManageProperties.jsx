@@ -2,10 +2,12 @@ import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
 
 const ManageProperties = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const {theme} = useAuth()
 
   // Fetch all properties
   const { data: properties = [], isLoading } = useQuery({
@@ -56,15 +58,15 @@ const ManageProperties = () => {
             >
               <div className="card-body">
                 {/* Property Title */}
-                <h3 className="card-title text-lg font-semibold text-gray-800">
+                <h3 className={`card-title text-lg font-semibold ${theme === "dark" ? "text-white" : "text-gray-800"}`}>
                   {p.title}
                 </h3>
-                <p className="text-sm text-gray-500">{p.location}</p>
+                <p className={`text-sm ${theme === "dark" ? "text-white/70" : "text-gray-500"}`}>{p.location}</p>
 
                 {/* Agent Info */}
                 <div className="mt-3">
                   <p className="font-medium">{p.agentName}</p>
-                  <p className="text-xs text-gray-500">{p.agentEmail}</p>
+                  <p className={`text-xs ${theme === "dark" ? "text-white/50" : "text-gray-500"}`}>{p.agentEmail}</p>
                 </div>
 
                 {/* Price Range */}
@@ -107,7 +109,7 @@ const ManageProperties = () => {
                     </>
                   ) : (
                     <span className="font-semibold text-gray-700">
-                      {p.status}
+                      {""}
                     </span>
                   )}
                 </div>

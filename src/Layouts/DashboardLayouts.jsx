@@ -1,15 +1,27 @@
 import React from "react";
 import useUserRole from "../Hooks/useUserRole";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
 import { Helmet } from "react-helmet";
 import useAuth from "../Hooks/useAuth";
 import { FaHome, FaUser, FaHeart, FaStar, FaPlusSquare, FaList, FaCheckCircle, FaUsers, FaCog, FaSignOutAlt } from "react-icons/fa";
+import ThemeToggle from "../components/ThemeToggle/ThemeToggle";
 
 const DashboardLayout = () => {
-  const { user } = useAuth();
-  const role = useUserRole(); // 'user' | 'agent' | 'admin'
+  const { user, logOut } = useAuth();
+  const role = useUserRole(); 
+  const navigate = useNavigate()
 
   const activeClass = "bg-primary/20 text-primary font-semibold rounded-lg";
+
+  const handleLogout = async () => {
+    try {
+      await logOut()
+      navigate("/")
+      ;
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   return (
     <div data-theme="mytheme" className="drawer lg:drawer-open min-h-screen">
@@ -33,10 +45,15 @@ const DashboardLayout = () => {
           {/* Profile Info */}
           <div className="flex items-center gap-3">
             <span className="hidden md:inline font-medium">{user?.displayName}</span>
-            <div className="avatar">
+            <div className="avatar space-x-1.5">
               <div className="w-10 rounded-full border">
-                <img src={user?.photoURL || "/default-avatar.png"} alt="User" />
+                <img 
+                src={user?.photoURL || "/default-avatar.png"} 
+                alt="User" 
+                loading="lazy"
+                />
               </div>
+              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -156,7 +173,9 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
             <li>
-              <button className="flex items-center gap-2 text-red-500">
+              <button 
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-red-500">
                 <FaSignOutAlt className="mr-2" /> Logout
               </button>
             </li>

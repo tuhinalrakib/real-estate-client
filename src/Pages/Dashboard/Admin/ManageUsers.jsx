@@ -75,10 +75,10 @@ const ManageUsers = () => {
             className="card bg-white/30 shadow-xl rounded-2xl border border-gray-100 hover:shadow-2xl transition duration-300"
           >
             <div className="card-body">
-              <h3 className="card-title text-lg font-semibold text-gray-800">
+              <h3 className="card-title text-lg font-semibold text-black">
                 {u.name || "Unnamed User"}
               </h3>
-              <p className="text-sm text-gray-500">{u.email}</p>
+              <p className="text-sm text-black/70">{u.email}</p>
 
               <div className="mt-2">
                 <span className="px-2 py-1 text-xs rounded-full font-medium bg-gray-100 text-gray-700 capitalize">

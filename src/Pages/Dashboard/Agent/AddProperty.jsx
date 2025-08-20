@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
 
 const AddProperty = () => {
-    const { user } = useAuth(); // From your context provider
+    const { user, theme } = useAuth(); // From your context provider
     const axiosSecure = useAxiosSecure();
     const [propertyImage, setPropertyImage] = useState("")
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -72,7 +72,8 @@ const AddProperty = () => {
                     <input
                         type="text"
                         {...register("title", { required: true })}
-                        className="input input-bordered w-full"
+                        placeholder="Enter The Property Name"
+                        className={`input input-bordered w-full ${theme === "dark" ? "text-white" : "text-black"}`}
                     />
                     {errors.title && <p className="text-red-500 text-sm">Title is required</p>}
                 </div>
@@ -83,7 +84,8 @@ const AddProperty = () => {
                     <input
                         type="text"
                         {...register("location", { required: true })}
-                        className="input input-bordered w-full"
+                        placeholder="Enter The Property Location"
+                        className={`input input-bordered w-full ${theme === "dark" ? "text-white" : "text-black"}`}
                     />
                     {errors.location && <p className="text-red-500 text-sm">Location is required</p>}
                 </div>
@@ -94,9 +96,8 @@ const AddProperty = () => {
                     <input
                         type="file"
                         accept="image/*"
-                        // {...register("image", { required: true })}
                         onChange={handleImageUpload}
-                        className="file-input file-input-bordered w-full"
+                        className={`file-input file-input-bordered w-full ${theme === "dark" ? "text-white" : "text-black"}`}
                     />
                     {/* {errors.image && <p className="text-red-500 text-sm">Image is required</p>} */}
                 </div>
@@ -109,7 +110,8 @@ const AddProperty = () => {
                             type="number"
                             step="any"
                             {...register("priceMin", { required: true })}
-                            className="input input-bordered w-full"
+                            placeholder="Property Minimum Price"
+                            className={`input input-bordered w-full ${theme === "dark" ? "text-white" : "text-black"}`}
                         />
                         {errors.priceMin && <p className="text-red-500 text-sm">Min price is required</p>}
                     </div>
@@ -119,7 +121,8 @@ const AddProperty = () => {
                             type="number"
                             step="any"
                             {...register("priceMax", { required: true })}
-                            className="input input-bordered w-full"
+                            placeholder="Property Maximum Price"
+                            className={`input input-bordered w-full ${theme === "dark" ? "text-white" : "text-black"}`}
                         />
                         {errors.priceMax && <p className="text-red-500 text-sm">Max price is required</p>}
                     </div>
@@ -133,7 +136,7 @@ const AddProperty = () => {
                             type="text"
                             value={user.displayName}
                             readOnly
-                            className="input input-bordered w-full"
+                            className={`input input-bordered w-full ${theme === "dark" ? "text-white" : "text-black"}`}
                         />
                     </div>
                     <div>
@@ -142,7 +145,7 @@ const AddProperty = () => {
                             type="email"
                             value={user.email}
                             readOnly
-                            className="input input-bordered w-full"
+                            className={`input input-bordered w-full ${theme === "dark" ? "text-white" : "text-black"}`}
                         />
                     </div>
                 </div>
